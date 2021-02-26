@@ -8,7 +8,12 @@ import { DetailsComponent } from './details/details.component';
 
 
 @NgModule({
-  declarations: [CreateComponent, UpdateComponent, ListComponent, DetailsComponent],
+  declarations: [
+    CreateComponent, 
+    UpdateComponent, 
+    ListComponent, 
+    DetailsComponent
+  ],
   imports: [
     CommonModule
   ]
