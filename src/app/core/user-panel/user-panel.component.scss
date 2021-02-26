@@ -1,0 +1,25 @@
+div {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 100%;
+
+    p {
+        font-size: 20px;
+    }
+
+    ul {
+        display: flex;
+        list-style: none;
+        border: 1px solid black;
+        border-radius: 5px;
+        margin-top: 5px;
+
+        li {
+            i {
+                font-size: 20px;
+                margin: 5px 20px;
+            }
+        }
+    }
+}

@@ -3,6 +3,9 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { FooterComponent } from './core/footer/footer.component';
+import { NavigationComponent } from './core/navigation/navigation.component';
+import { UserPanelComponent } from './core/user-panel/user-panel.component';
 
 @NgModule({
   declarations: [
@@ -13,6 +16,11 @@ import { AppComponent } from './app.component';
     AppRoutingModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [
+    AppComponent,
+    NavigationComponent,
+    UserPanelComponent,
+    FooterComponent
+  ]
 })
 export class AppModule { }
