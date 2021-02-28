@@ -1,1 +1,32 @@
-<p>create works!</p>
+<div class="form-wrapper">
+    <form>
+        <div class="name-wrapper">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name">
+        </div>
+        <div class="description-wrapper">
+            <label for="description">Description:</label>
+            <textarea name="description" id="description" cols="30" rows="10"></textarea>
+        </div>
+        <div class="category-wrapper">
+            <label for="category">Category:</label>
+            <select name="category" id="category">
+                <option value="cpu">CPU</option>
+                <option value="gpu">Graphics Card</option>
+                <option value="ram">RAM</option>
+                <option value="hdd">Hard Drive</option>
+                <option value="cooling">Cooling</option>
+                <option value="ps">Power Supply</option>
+            </select>
+        </div>
+        <div class="image-wrapper">
+            <label for="imageUrl">Image URL:</label>
+            <input type="text" name="imageUrl" id="imageUrl">
+        </div>
+        <div class="price-wrapper">
+            <label for="price">Price:</label>
+            <input type="text" name="price" id="price">
+        </div>
+    </form>
+    <button type="button">Create</button>
+</div>

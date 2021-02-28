@@ -1,9 +1,10 @@
 <div class="user-panel">
-    <p>user-email@somedomain.com</p>
-    <ul>
-        <li><i class="far fa-thumbs-up"></i></li>
-        <li><i class="far fa-heart"></i></li>
-        <li><i class="fas fa-user-tag"></i></li>
-        <li><i class="fas fa-door-open"></i></li>
+    <p *ngIf="isLogged">user-email@somedomain.com</p>
+    <ul *ngIf="isLogged">
+        <li routerLink='/offers/liked'><i class="far fa-thumbs-up"></i></li>
+        <li routerLink='/offers/shoppingCart'><i class="far fa-heart"></i></li>
+        <li routerLink='/offers/myOffers'><i class="fas fa-user-tag"></i></li>
+        <li routerLink='/user/logout'><i class="fas fa-door-open"></i></li>
     </ul>
+    <button *ngIf="!isLogged" class="login" routerLink="/user/login">Login</button>
 </div>
