@@ -1,4 +1,41 @@
 div.form-wrapper {
     display: flex;
     justify-content: center;
+
+    form {
+        font-size: 18px;
+        padding: 20px;
+        border: 1px solid #2161AB;
+
+        div {
+            margin: 10px 0;
+        }
+
+        label {
+            display: inline-block;
+            width: 100px;
+        }
+
+        .description-wrapper {
+            display: flex;
+            align-items: center;
+        }
+
+        input,
+        textarea {
+            width: 300px;
+        }
+
+        button {
+            width: 100%;
+            color: white;
+            padding: 5px;
+            border: none;
+            background: #5494DE;
+        }
+    }
+
+    button {
+        width: 100%;
+    }
 }
