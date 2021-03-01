@@ -18,6 +18,19 @@ body {
             display: flex;
             justify-content: space-around;
             margin-bottom: 5px;
+            height: 200px;
+
+            img {
+                position: absolute;
+                height: 200px;
+                left: 0;
+                width: 100%;
+                z-index: -1;
+            }
+
+            app-user-panel {
+                width: 100%;
+            }
         }
     }
 

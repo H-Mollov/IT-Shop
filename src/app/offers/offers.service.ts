@@ -46,9 +46,14 @@ export class OffersService {
   }
 
   showFilteredList(category: string) {
-    this.filterOffersByCategory(category).subscribe((data) => {
-      this.filteredOffers = data;
+    this.filterOffersByCategory(category).subscribe(() => {
       this.router.navigateByUrl(`offers/${category}`)
     })
+  }
+
+  showOfferDetails(offerId: string) {
+    let targetedOffer;
+    this.store.select(offers).subscribe(data => targetedOffer = data);
+    console.log(targetedOffer.offers.currentOffers.results);
   }
 }

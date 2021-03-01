@@ -16,6 +16,7 @@ export class ListComponent implements OnInit {
   ) { }
 
   currentOffers;
+  showDetails = this.offers;
 
   ngOnInit(): void {
     this.store.select(offers).subscribe((data) => {

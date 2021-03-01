@@ -1,5 +1,6 @@
 import { RouterModule, Routes } from '@angular/router'
 import { CreateComponent } from './create/create.component';
+import { DetailsComponent } from './details/details.component';
 import { ListComponent } from './list/list.component'
 import { OffersService } from './offers.service'
 
@@ -17,6 +18,10 @@ const routes: Routes = [
     {
         path: 'offers/:category',
         component: ListComponent,
+    },
+    {
+        path: 'offers/details/:id',
+        component: DetailsComponent
     }
 ]
 

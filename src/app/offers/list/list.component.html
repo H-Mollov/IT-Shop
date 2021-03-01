@@ -23,10 +23,10 @@
         </header>
         <div class="product-list">
             <div class="product-wrapper" *ngFor="let offer of currentOffers">
-                <div class="image-wrapper">
-                    <img src="{{offer.imageUrl}}" alt="image.png">
+                <div class="image-wrapper" routerLink='/offers/details/{{offer.objectId}}'>
+                    <img src="{{offer.imageUrl}}" alt="image.png" >
                 </div>
-                <article>
+                <article routerLink='/offers/details/{{offer.objectId}}'>
                     <h4>{{offer.name}}</h4>
                     <p>{{offer.price}}$</p>
                 </article>
