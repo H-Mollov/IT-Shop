@@ -5,6 +5,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { environment as env } from '../../environments/environment'
 import { Store } from '@ngrx/store';
 import { login } from '../+store/actions'
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -38,5 +39,40 @@ export class UserService {
       }),
       catchError((err) => { throw new Error(err) })
     )
+  }
+
+  checkSession(currentSessionId = localStorage.getItem('sessionToken')) {
+    let currentUser;
+    this.store.select(login).subscribe(data => currentUser = data.login.currentUser);
+
+    if (currentUser) {
+      return new Observable;
+    };
+
+    if (currentSessionId) {
+      return this.http.get(`${env.apiURL}${env.endPoints.authenticate}`, {
+        headers: new HttpHeaders({
+          'X-Parse-Application-Id': env.applicationID,
+          'X-Parse-REST-API-Key': env.restAPIkey,
+          'X-Parse-Session-Token': currentSessionId,
+          'Content-Type': 'application/json'
+        })
+      }).pipe(
+        tap((data: any) => {
+          const currentDate = new Date().getTime();
+          const expirationDate = new Date(data.expiresAt.iso).getTime()
+
+          if (currentSessionId && expirationDate - currentDate > 0) {
+            this.store.dispatch(login({
+              userId: data.objectId,
+              sessionToken: data.sessionToken,
+            }))
+          } else {
+            localStorage.removeItem('sessionToken')
+          }
+        }),
+        catchError((err) => { throw new Error(err) })
+      )
+    }
   }
 }
