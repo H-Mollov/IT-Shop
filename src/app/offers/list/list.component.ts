@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { offers } from 'src/app/+store/actions';
+import { OffersService } from '../offers.service';
 
 @Component({
   selector: 'app-list',
@@ -7,9 +10,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private offers: OffersService,
+    private store: Store
+  ) { }
+
+  currentOffers;
 
   ngOnInit(): void {
+    this.store.select(offers).subscribe((data) => {
+      this.currentOffers = data.offers.currentOffers.results;
+    })
   }
-
 }

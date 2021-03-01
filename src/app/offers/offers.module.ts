@@ -8,6 +8,7 @@ import { OffersRoutingModule } from './offers-routing.module';
 import { LikedComponent } from './liked/liked.component';
 import { MyOffersComponent } from './my-offers/my-offers.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component'
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component'
   ],
   imports: [
     CommonModule,
-    OffersRoutingModule
+    OffersRoutingModule,
+    FormsModule
   ]
 })
 export class OffersModule { }

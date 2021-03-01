@@ -1,10 +1,10 @@
 <ul>
     <li routerLink="home"><span>Home</span></li>
-    <li routerLink="cpu"><span>CPUs</span></li>
-    <li routerLink="gpu"><span>Graphic Cards</span></li>
-    <li routerLink="ram"><span>RAM</span></li>
-    <li routerLink="hdd"><span>Hard Drives</span></li>
-    <li routerLink="cooling"><span>Cooling</span></li>
-    <li routerLink="ps"><span>Power Supply</span></li>
+    <li (click)="offerService.showFilteredList('cpu')"><span>CPUs</span></li>
+    <li (click)="offerService.showFilteredList('gpu')"><span>Graphic Cards</span></li>
+    <li (click)="offerService.showFilteredList('ram')"><span>RAM</span></li>
+    <li (click)="offerService.showFilteredList('hdd')"><span>Hard Drives</span></li>
+    <li (click)="offerService.showFilteredList('cooling')"><span>Cooling</span></li>
+    <li (click)="offerService.showFilteredList('ps')"><span>Power Supply</span></li>
     <li routerLink="add" class="user-offer" *ngIf="isLogged">Add YOUR Offer!</li>
 </ul>

@@ -15,9 +15,6 @@ export class UserService {
     private http: HttpClient,
     private store: Store<any>
   ) { }
-  
-  currentUser$ = this.store.select((state) => state.login.currentUser);
-  isLogged$ = this.store.select((state) => state.login.currentUser._value);
 
   loginHeaders = new HttpHeaders({
     'X-Parse-Application-Id': env.applicationID,
@@ -38,7 +35,6 @@ export class UserService {
           userId: data.objectId,
           sessionToken: data.sessionToken
         }));
-        console.log(this.isLogged$)
       }),
       catchError((err) => { throw new Error(err) })
     )
