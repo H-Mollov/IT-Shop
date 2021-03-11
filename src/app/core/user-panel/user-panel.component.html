@@ -2,8 +2,8 @@
     <div class="options-wrapper">
         <p *ngIf="isLogged">user-email@somedomain.com</p>
         <ul *ngIf="isLogged">
+            <li routerLink='/offers/shoppingCart'><i class="fas fa-shopping-cart"></i></li>
             <li routerLink='/offers/liked'><i class="far fa-thumbs-up"></i></li>
-            <li routerLink='/offers/shoppingCart'><i class="far fa-heart"></i></li>
             <li routerLink='/offers/myOffers'><i class="fas fa-user-tag"></i></li>
             <li routerLink='/user/logout'><i class="fas fa-door-open"></i></li>
         </ul>

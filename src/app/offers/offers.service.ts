@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment as env } from '../../environments/environment'
 import { Store } from '@ngrx/store';
-import { offers } from '../+store/actions'
+import { offers, promotion, bestSellers } from '../+store/actions'
 import { catchError, tap } from 'rxjs/operators';
 
 @Injectable({
@@ -45,6 +45,37 @@ export class OffersService {
     )
   }
 
+  getPromoOffers() {
+    return this.http.get(`${env.apiURL}${env.endPoints.createOffer}/`, {
+      headers: this.offerHeaders,
+      params: new HttpParams()
+      .set('where', '{"promotion":true}')
+    }).pipe(
+      tap((data: any) => {
+        this.store.dispatch(promotion(data.results))
+      }),
+      catchError((err) => { throw new Error(err)})
+    )
+  }
+
+  getBestSellerOffers() {
+    return this.http.get(`${env.apiURL}${env.endPoints.createOffer}/`, {
+      headers: this.offerHeaders,
+      params: new HttpParams()
+      .set('limit', '5')
+      .set('order', '-bought')
+    }).pipe(
+      tap((data: any) => {
+        this.store.dispatch(bestSellers(data.results))
+      }),
+      catchError((err) => { throw new Error(err)})
+    )
+  }
+
+  filterOffersById(offersArray: Array<string>) {
+    
+  }
+
   showFilteredList(category: string) {
     this.filterOffersByCategory(category).subscribe(() => {
       this.router.navigateByUrl(`offers/${category}`)
@@ -53,7 +84,10 @@ export class OffersService {
 
   showOfferDetails(offerId: string) {
     let targetedOffer;
-    this.store.select(offers).subscribe(data => targetedOffer = data);
-    console.log(targetedOffer.offers.currentOffers.results);
+    this.store.select(offers).subscribe(data => targetedOffer = data.offers.currentOffers.results);
+  }
+
+  addToCart(offerId: string) {
+
   }
 }

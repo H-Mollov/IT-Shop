@@ -1,7 +1,9 @@
 import { ActionReducerMap } from '@ngrx/store';
-import { loginReducer, offersReducer } from './reducer-functions'
+import { bestSellersReducer, loginReducer, offersReducer, promotionsReducer } from './reducer-functions'
 
 export const reducers: ActionReducerMap<any> = {
     login: loginReducer,
-    offers: offersReducer
+    offers: offersReducer,
+    promotions: promotionsReducer,
+    bestSellers: bestSellersReducer
 }
