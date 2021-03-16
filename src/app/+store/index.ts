@@ -5,5 +5,5 @@ export const reducers: ActionReducerMap<any> = {
     login: loginReducer,
     offers: offersReducer,
     promotions: promotionsReducer,
-    bestSellers: bestSellersReducer
+    bestSellers: bestSellersReducer,
 }

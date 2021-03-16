@@ -10,7 +10,8 @@ export const environment = {
   endPoints: {
     login: 'login',
     authenticate: 'parse/sessions/me',
-    createOffer: 'classes/offers'
+    createOffer: 'classes/offers',
+    user: 'users',
   }
 };
 

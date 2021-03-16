@@ -75,4 +75,15 @@ export class UserService {
       )
     }
   }
+
+  updateUser(userData, currentSessionId = localStorage.getItem('sessionToken')) {
+    return this.http.put(`${env.apiURL}${env.endPoints.user}`, userData, {
+      headers: new HttpHeaders({
+        'X-Parse-Application-Id': env.applicationID,
+        'X-Parse-REST-API-Key': env.restAPIkey,
+        'X-Parse-Session-Token': currentSessionId,
+        'Content-Type': 'application/json'
+      })
+    })
+  }
 }

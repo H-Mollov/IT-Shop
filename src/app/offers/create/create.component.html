@@ -2,15 +2,15 @@
     <form #f="ngForm" (ngSubmit)="formHandler(f.value)">
         <div class="name-wrapper">
             <label for="name">Name:</label>
-            <input type="text" id="name" name="name" #name="ngModel" ngModel>
+            <input type="text" id="name" name="name" #name="ngModel" ngModel [value]="currentElement.name? currentElement.name : null">
         </div>
         <div class="description-wrapper">
             <label for="description">Description:</label>
-            <textarea name="description" id="description" cols="30" rows="10" #description="ngModel" ngModel></textarea>
+            <textarea name="description" id="description" cols="30" rows="10" #description="ngModel" ngModel>{{currentElement.description ? currentElement.description : null}}</textarea>
         </div>
         <div class="category-wrapper">
             <label for="category">Category:</label>
-            <select name="category" id="category" #category="ngModel" ngModel>
+            <select name="category" id="category" #category="ngModel" ngModel [autofocus]="currentElement.category? currentElement.category : null">
                 <option value="cpu">CPU</option>
                 <option value="gpu">Graphics Card</option>
                 <option value="ram">RAM</option>
@@ -21,11 +21,11 @@
         </div>
         <div class="image-wrapper">
             <label for="imageUrl">Image URL:</label>
-            <input type="text" name="imageUrl" id="imageUrl" #imageUrl="ngModel" ngModel>
+            <input type="text" name="imageUrl" id="imageUrl" #imageUrl="ngModel" ngModel [value]="currentElement.imageUrl? currentElement.imageUrl : null">
         </div>
         <div class="price-wrapper">
             <label for="price">Price:</label>
-            <input #price="ngModel" type="number" name="price" id="price" ngModel>
+            <input #price="ngModel" type="number" name="price" id="price" ngModel [value]="currentElement.price? currentElement.price : null">
         </div>
         <button>Create</button>
     </form>

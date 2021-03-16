@@ -46,12 +46,12 @@ export class OffersService {
     return this.http.get(`${env.apiURL}${env.endPoints.createOffer}/`, {
       headers: this.offerHeaders,
       params: new HttpParams()
-      .set('where', '{"promotion":true}')
+        .set('where', '{"promotion":true}')
     }).pipe(
       tap((data: any) => {
         this.store.dispatch(promotion(data.results))
       }),
-      catchError((err) => { throw new Error(err)})
+      catchError((err) => { throw new Error(err) })
     )
   }
 
@@ -59,18 +59,26 @@ export class OffersService {
     return this.http.get(`${env.apiURL}${env.endPoints.createOffer}/`, {
       headers: this.offerHeaders,
       params: new HttpParams()
-      .set('limit', '5')
-      .set('order', '-bought')
+        .set('limit', '5')
+        .set('order', '-bought')
     }).pipe(
       tap((data: any) => {
         this.store.dispatch(bestSellers(data.results))
       }),
-      catchError((err) => { throw new Error(err)})
+      catchError((err) => { throw new Error(err) })
     )
   }
 
+  updateOffer(offerId, offerData) {
+    return this.http.put(`${env.apiURL}${env.endPoints.createOffer}/${offerId}`, offerData, { headers: this.offerHeaders });
+  }
+
+  deleteOffer(offerId) {
+    return this.http.delete(`${env.apiURL}${env.endPoints.createOffer}/${offerId}`);
+  }
+
   filterOffersById(offersArray: Array<string>) {
-    
+
   }
 
   showFilteredList(category: string) {

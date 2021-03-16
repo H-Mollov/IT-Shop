@@ -1,38 +1,57 @@
-import { Component, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { offers, login } from '../../+store/actions';
+import { offers, login, focusedOffer } from '../../+store/actions';
+import { OffersService } from '../offers.service';
 
 @Component({
   selector: 'app-details',
   templateUrl: './details.component.html',
   styleUrls: ['./details.component.scss']
 })
-export class DetailsComponent implements OnDestroy {
+export class DetailsComponent implements OnDestroy, OnInit {
 
   constructor(
     private activatdRoute: ActivatedRoute,
-    private store: Store
-  ) {}
+    private store: Store,
+    private offerService: OffersService,
+    private router: Router
+  ) { }
 
   id = this.activatdRoute.snapshot.params.id;
   currentElement;
-  currentOwner: string;
+  currentUser: string;
   isLiked: boolean = false;
 
   findElement = this.store.select(offers).subscribe((data) => {
     this.currentElement = data.offers.currentOffers.results.find(element => element.objectId === this.id);
     console.log(this.currentElement);
-  })
+  });
 
   getOwner = this.store.select(login).subscribe((data) => {
-    this.currentOwner = data.login.currentUser.userId;
-    if (this.currentOwner !== this.currentElement.owner) {
-      if (this.currentElement.likes.includes(this.currentOwner)) {
+    this.currentUser = data.login.currentUser.userId;
+    if (this.currentUser !== this.currentElement.owner) {
+      if (this.currentElement.likes.includes(this.currentUser)) {
         this.isLiked = true;
       }
     }
-  })
+  });
+
+  ngOnInit(): void {
+    this.store.dispatch(focusedOffer(this.currentElement));
+  }
+
+  likeOffer(): void {
+    const likesArr = this.currentElement.likes;
+    likesArr.push(this.currentUser);
+
+    this.offerService.updateOffer(this.id, { likes: likesArr });
+  }
+
+  deleteOffer(): void {
+    this.offerService.deleteOffer(this.id);
+    this.router.navigateByUrl('/home');
+  }
 
   ngOnDestroy(): void {
     this.findElement.unsubscribe();
