@@ -1,6 +1,9 @@
 <div class="details-wrapper">
     <div class="left-side">
         <img src="{{currentElement.imageUrl}}" alt="image.png">
+        <div class="likeBtn-wrapper" *ngIf="currentElement.owner === currentOwner">
+            <button [disabled]="isLiked? true : false">{{isLiked ? "You liked this item!" : "Like"}}</button>
+        </div>
         <div class="information-wrapper">
             <span>Bought {{currentElement.bought}} times!</span>
             <span>Liked by {{currentElement.likes.length}} people!</span>
@@ -10,8 +13,12 @@
         <h2>{{currentElement.name}}</h2>
         <p>{{currentElement.description}}</p>
         <div class="price-wrapper">
-            <span>{{currentElement.price}}$</span>
-            <button>Add to Cart</button>
+            <span *ngIf="!currentElement.promotion">{{currentElement.price}}$</span>
+            <span *ngIf="currentElement.promotion">{{(currentElement.price - ((currentElement.price / 100) *
+                currentElement.promotionPercentage)).toFixed(2)}}$</span>
+            <button *ngIf="currentElement.owner === currentOwner">Add to Cart</button>
+            <button *ngIf="currentElement.owner === currentOwner">Edit Offer</button>
+            <button *ngIf="currentElement.owner === currentOwner">Delete Offer</button>
         </div>
     </div>
 </div>

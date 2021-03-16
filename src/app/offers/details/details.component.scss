@@ -20,11 +20,20 @@
             height: max-content;
         }
 
+        .likeBtn-wrapper {
+            width: 80%;
+        }
+
         .information-wrapper {
             width: 100%;
             display: flex;
             justify-content: space-around;
             margin-top: 20px;
+        }
+
+        button {
+            width: 100%;
+            border-radius: 20px;
         }
     }
 
@@ -53,12 +62,21 @@
             }
 
             button {
-                padding: 5px 20px;
                 text-align: center;
-                background: #2161ab;
-                color: white;
-                border: none;
             }
         }
+    }
+
+    button {
+        padding: 5px 20px;
+        font-size: 20px;
+        background: #2161ab;
+        border: none;
+        color: white;
+        margin-top: 5px;
+    }
+
+    button:hover {
+        cursor: pointer;
     }
 }
