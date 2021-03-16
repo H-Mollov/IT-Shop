@@ -33,7 +33,7 @@ export class UserService {
     }).pipe(
       tap((data: any) => {
         this.store.dispatch(login({
-          userId: data.objectId,
+          userId: data.user.objectId,
           sessionToken: data.sessionToken
         }));
       }),

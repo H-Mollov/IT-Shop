@@ -24,11 +24,15 @@ export class CreateComponent implements OnInit {
     const currentUser = this.store.select(login).subscribe((data) => {
       formData.owner = data.login.currentUser.userId;
     });
+
     formData.likes = [];
+    formData.bought = 0;
+    formData.promotion = false;
+    formData.promotionPercentage = 0;
     
     this.offer.createOffer(formData).subscribe({
       next: () => {
-        this.router.navigateByUrl('/home')
+        this.router.navigateByUrl(`/home`);
       },
       error: (err) => {
         console.log(err);

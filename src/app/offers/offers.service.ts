@@ -29,9 +29,6 @@ export class OffersService {
     return this.http.post(`${env.apiURL}${env.endPoints.createOffer}`, offerData, { headers: this.offerHeaders });
   }
 
-  offerDetails(offerId) {
-  }
-
   filterOffersByCategory(category) {
     return this.http.get(`${env.apiURL}${env.endPoints.createOffer}/`, {
       headers: this.offerHeaders,

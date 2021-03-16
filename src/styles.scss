@@ -1,8 +1,10 @@
 @import url("https://use.fontawesome.com/releases/v5.13.0/css/all.css");
+@import url('https://fonts.googleapis.com/css2?family=Oxanium&display=swap');
 
 * {
     margin: 0;
     padding: 0;
+    font-family: 'Oxanium', cursive, 'Ebrima', 'Calibri', 'Arial';
 }
 
 body {
@@ -17,7 +19,6 @@ body {
         .top {
             display: flex;
             justify-content: space-around;
-            margin-bottom: 5px;
             height: 200px;
 
             img {
