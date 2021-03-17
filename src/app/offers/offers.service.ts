@@ -75,7 +75,7 @@ export class OffersService {
   }
 
   deleteOffer(offerId) {
-    return this.http.delete(`${env.apiURL}${env.endPoints.createOffer}/${offerId}`);
+    return this.http.delete(`${env.apiURL}${env.endPoints.createOffer}/${offerId}`, { headers: this.offerHeaders });
   }
 
   showFilteredList(category: string) {

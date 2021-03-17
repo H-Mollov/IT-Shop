@@ -19,15 +19,17 @@ export class CreateComponent implements OnInit, OnDestroy {
   ) { }
 
   id: string = this.activatedRoute.snapshot.params.id ? this.activatedRoute.snapshot.params.id : undefined;
-  currentElement = this.offer.editOfferData? this.offer.editOfferData : {};
+  currentElement = this.offer.editOfferData ? this.offer.editOfferData : {};
 
   ngOnInit(): void {
   }
 
   formHandler(formData) {
     if (this.id) { //Update existing Offer
-      this.offer.updateOffer(this.id, formData);
-      this.router.navigateByUrl('/home');
+      formData.price = Number(formData.price);
+      this.offer.updateOffer(this.id, formData).subscribe(() => {
+        this.router.navigateByUrl('/offers/'+ formData.category);
+      });
     } else { //Create new Offer
       const currentUser = this.store.select(login).subscribe((data) => {
         formData.owner = data.login.currentUser.userId;
@@ -49,7 +51,7 @@ export class CreateComponent implements OnInit, OnDestroy {
     }
   }
 
-  ngOnDestroy():void {
+  ngOnDestroy(): void {
     this.id = undefined;
     this.offer.editOfferData = undefined;
   }

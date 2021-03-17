@@ -49,8 +49,9 @@ export class DetailsComponent implements OnDestroy, OnInit {
   }
 
   deleteOffer(): void {
-    this.offerService.deleteOffer(this.id);
-    this.router.navigateByUrl('/home');
+    this.offerService.deleteOffer(this.id).subscribe(() => {
+      this.router.navigateByUrl('/home');
+    });
   }
 
   editOffer(url: string): void {
