@@ -24,6 +24,7 @@ export class OffersService {
   })
 
   filteredOffers;
+  editOfferData;
 
   createOffer(offerData) {
     return this.http.post(`${env.apiURL}${env.endPoints.createOffer}`, offerData, { headers: this.offerHeaders });
@@ -77,22 +78,9 @@ export class OffersService {
     return this.http.delete(`${env.apiURL}${env.endPoints.createOffer}/${offerId}`);
   }
 
-  filterOffersById(offersArray: Array<string>) {
-
-  }
-
   showFilteredList(category: string) {
     this.filterOffersByCategory(category).subscribe(() => {
       this.router.navigateByUrl(`offers/${category}`)
     })
-  }
-
-  showOfferDetails(offerId: string) {
-    let targetedOffer;
-    this.store.select(offers).subscribe(data => targetedOffer = data.offers.currentOffers.results);
-  }
-
-  addToCart(offerId: string) {
-
   }
 }

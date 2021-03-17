@@ -53,6 +53,11 @@ export class DetailsComponent implements OnDestroy, OnInit {
     this.router.navigateByUrl('/home');
   }
 
+  editOffer(url: string): void {
+    this.offerService.editOfferData = this.currentElement;
+    this.router.navigateByUrl(url);
+  }
+
   ngOnDestroy(): void {
     this.findElement.unsubscribe();
     this.getOwner.unsubscribe();

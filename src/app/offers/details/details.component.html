@@ -17,7 +17,7 @@
             <span *ngIf="currentElement.promotion">{{(currentElement.price - ((currentElement.price / 100) *
                 currentElement.promotionPercentage)).toFixed(2)}}$</span>
             <button *ngIf="currentElement.owner !== currentUser">Add to Cart</button>
-            <button *ngIf="currentElement.owner === currentUser" routerLink='/offers/edit/{{currentElement.objectId}}'>Edit Offer</button>
+            <button *ngIf="currentElement.owner === currentUser" (click)="editOffer('/offers/edit/' + currentElement.objectId)">Edit Offer</button>
             <button *ngIf="currentElement.owner === currentUser" (click)="deleteOffer()">Delete Offer</button>
         </div>
     </div>
