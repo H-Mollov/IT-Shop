@@ -9,7 +9,7 @@ import { OffersService } from '../offers.service';
   templateUrl: './create.component.html',
   styleUrls: ['./create.component.scss']
 })
-export class CreateComponent implements OnInit {
+export class CreateComponent implements OnInit, OnDestroy {
 
   constructor(
     private store: Store,
@@ -19,14 +19,10 @@ export class CreateComponent implements OnInit {
   ) { }
 
   id: string = this.activatedRoute.snapshot.params.id ? this.activatedRoute.snapshot.params.id : undefined;
-  currentElement = null;
+  currentElement = this.offer.editOfferData? this.offer.editOfferData : {};
 
   ngOnInit(): void {
   }
-
-  getCurrentElement = this.store.select(focusedOffer).subscribe((data) => {
-    this.currentElement = data.offers.focusedOffer;
-  })
 
   formHandler(formData) {
     if (this.id) { //Update existing Offer
@@ -51,5 +47,10 @@ export class CreateComponent implements OnInit {
         }
       })
     }
+  }
+
+  ngOnDestroy():void {
+    this.id = undefined;
+    this.offer.editOfferData = undefined;
   }
 }
