@@ -70,10 +70,14 @@ export class DetailsComponent implements OnDestroy, OnInit {
     const itteratedValue = this.currentElement.bought + 1;
     this.buyCounter++;
 
-    this.offerService.updateOffer(this.id, { bought: itteratedValue }).subscribe((data) => {
-      console.log(data);
-      console.log(this.currentElement);
-    });
+    this.offerService.updateOffer(this.id, { bought: itteratedValue }).subscribe();
+
+    if (this.currentUserObj) {
+      const boughtOffers = Array.from(this.currentUserObj.boughtOffers);
+      boughtOffers.push(this.currentElement.objectId);
+
+      this.user.updateUser({ boughtOffers: boughtOffers }, this.currentUserObj.objectId).subscribe();
+    }
   }
 
   deleteOffer(): void {
