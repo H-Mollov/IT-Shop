@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   switchCounterId;
 
   ngOnInit(): void {
-    this.user.checkSession().subscribe();
+    this.user.checkSession();
     this.offers.getPromoOffers().subscribe((data) => {
       this.promoOffers = data.results;
       this.displayedPromoOffer = data.results[0];

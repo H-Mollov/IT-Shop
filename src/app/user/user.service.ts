@@ -41,7 +41,7 @@ export class UserService {
     )
   }
 
-  checkSession(currentSessionId = localStorage.getItem('sessionToken')) {
+  checkCurrentSession(currentSessionId = localStorage.getItem('sessionToken')) {
     let currentUser;
     this.store.select(login).subscribe(data => currentUser = data.login.currentUser);
 
@@ -57,27 +57,44 @@ export class UserService {
           'X-Parse-Session-Token': currentSessionId,
           'Content-Type': 'application/json'
         })
-      }).pipe(
-        tap((data: any) => {
-          const currentDate = new Date().getTime();
-          const expirationDate = new Date(data.expiresAt.iso).getTime()
+      })
+    }
+  }
 
-          if (currentSessionId && expirationDate - currentDate > 0) {
-            this.store.dispatch(login({
-              userId: data.user.objectId,
-              sessionToken: data.sessionToken,
-            }))
-          } else {
-            localStorage.removeItem('sessionToken')
-          }
-        }),
-        catchError((err) => { throw new Error(err) })
-      )
+  checkSession(currentSessionId = localStorage.getItem('sessionToken')) {
+    if (currentSessionId) {
+      this.checkCurrentSession().subscribe((data: any) => {
+        const currentDate = new Date().getTime();
+        const expirationDate = new Date(data.expiresAt.iso).getTime()
+
+        if (currentSessionId && expirationDate - currentDate > 0) {
+          this.store.dispatch(login({
+            userId: data.user.objectId,
+            sessionToken: data.sessionToken,
+          }))
+        } else {
+          localStorage.removeItem('sessionToken')
+        }
+      })
     }
   }
 
   updateUser(userData, currentSessionId = localStorage.getItem('sessionToken')) {
     return this.http.put(`${env.apiURL}${env.endPoints.user}`, userData, {
+      headers: new HttpHeaders({
+        'X-Parse-Application-Id': env.applicationID,
+        'X-Parse-REST-API-Key': env.restAPIkey,
+        'X-Parse-Session-Token': currentSessionId,
+        'Content-Type': 'application/json'
+      })
+    })
+  }
+
+  logoutUser() {
+    const currentSessionId = localStorage.getItem('sessionToken');
+    localStorage.removeItem('sessionToken');
+    
+    return this.http.post(`${env.apiURL}${env.endPoints.logout}`, {}, {
       headers: new HttpHeaders({
         'X-Parse-Application-Id': env.applicationID,
         'X-Parse-REST-API-Key': env.restAPIkey,

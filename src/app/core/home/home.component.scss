@@ -13,7 +13,8 @@
     }
 
     .focus {
-        width: 50%;
+        width: 1024px;
+        height: 756px;
         display: flex;
         flex-direction: column;
         margin: 0px 10px;
@@ -43,8 +44,12 @@
         }
 
         figure {
+            width: 100%;
+            height: 85%;
+
             img {
                 width: 100%;
+                height: 100%;
             }
 
             figcaption {

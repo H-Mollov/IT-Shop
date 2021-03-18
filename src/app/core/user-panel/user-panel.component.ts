@@ -26,6 +26,13 @@ export class UserPanelComponent implements OnInit, OnDestroy {
   currentUser = this.store.select(login).subscribe((data) => {
     this.isLogged = data.login.currentUser;
   })
+
+  logoutUserHandler() {
+    this.user.logoutUser().subscribe(() => {
+      this.router.navigateByUrl('/user/login');
+      window.location.reload();
+    })
+  }
   
   ngOnInit(): void {
   }

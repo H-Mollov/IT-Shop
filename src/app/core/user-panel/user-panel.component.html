@@ -4,7 +4,7 @@
             <li><i class="fas fa-shopping-cart"></i></li>
             <li><i class="far fa-thumbs-up" routerLink='/offers/liked'></i></li>
             <li><i class="fas fa-user-tag" (click)="offers$.showMyOffers(isLogged.userId)" routerLink="/offers/myOffers"></i></li>
-            <li><i class="fas fa-door-open" routerLink='/user/logout'></i></li>
+            <li><i class="fas fa-door-open" (click)='logoutUserHandler()'></i></li>
         </ul>
     </div>
     <button *ngIf="!isLogged" class="login" routerLink="/user/login">Login</button>

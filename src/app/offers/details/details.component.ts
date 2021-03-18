@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { offers, login, focusedOffer,  } from '../../+store/actions';
+import { offers, login, focusedOffer, } from '../../+store/actions';
 import { OffersService } from '../offers.service';
 
 @Component({
@@ -22,13 +22,16 @@ export class DetailsComponent implements OnDestroy, OnInit {
   currentElement;
   currentUser: string;
   isLiked: boolean = false;
+  likesCounter: number;
+  buyCounter: number;
 
   findElement = this.store.select(offers).subscribe((data) => {
-    this.currentElement = 
-    data.offers.currentOffers.results.find(element => element.objectId === this.id) ||
-    data.offers.myOffers.results.find(element => element.objectId === this.id);
+    this.currentElement =
+      data.offers.currentOffers.results.find(element => element.objectId === this.id) ||
+      data.offers.myOffers.results.find(element => element.objectId === this.id);
+      this.likesCounter = this.currentElement.likes.length;
+      this.buyCounter = this.currentElement.bought;
     console.log(this.currentElement);
-    console.log(data);
   });
 
   getOwner = this.store.select(login).subscribe((data) => {
@@ -45,10 +48,22 @@ export class DetailsComponent implements OnDestroy, OnInit {
   }
 
   likeOffer(): void {
-    const likesArr = this.currentElement.likes;
+    const likesArr = Array.from(this.currentElement.likes);
     likesArr.push(this.currentUser);
+    this.isLiked = true;
+    this.likesCounter++;
 
-    this.offerService.updateOffer(this.id, { likes: likesArr });
+    this.offerService.updateOffer(this.id, { likes: likesArr }).subscribe();
+  }
+
+  buyOffer(): void {
+    const itteratedValue = this.currentElement.bought + 1;
+    this.buyCounter++;
+
+    this.offerService.updateOffer(this.id, { bought: itteratedValue }).subscribe((data) => {
+      console.log(data);
+      console.log(this.currentElement);
+    });
   }
 
   deleteOffer(): void {

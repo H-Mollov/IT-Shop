@@ -23,7 +23,7 @@ export class ListComponent implements OnInit {
   showDetails = this.offers;
 
   ngOnInit(): void {
-    this.user.checkSession().subscribe();
+    this.user.checkSession();
     this.store.select(offers).subscribe((data) => {
       if (!data.offers.currentOffers) {
         this.offers.filterOffersByCategory(this.activatedRoute.snapshot.params.category).subscribe((data) => {

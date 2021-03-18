@@ -19,5 +19,8 @@
             </div>
             <span class="price">{{offer.price}}$</span>
         </li>
+        <li *ngIf="myOffers.length === 0" class="no-offers-wrapper">
+            <p>Hmm ... It seems you don't have any posted offers yet.</p>
+        </li>
     </ul>
 </section>

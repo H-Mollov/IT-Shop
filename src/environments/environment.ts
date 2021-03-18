@@ -9,9 +9,11 @@ export const environment = {
   restAPIkey: 'POiam2abGNggytZTZKHboOtRRlYVWMul5SdeIBZb',
   endPoints: {
     login: 'login',
+    logout: 'logout',
     authenticate: 'parse/sessions/me',
     createOffer: 'classes/offers',
     user: 'users',
+
   }
 };
 
