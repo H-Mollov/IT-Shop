@@ -28,6 +28,10 @@ div {
                 i {
                     font-size: 20px;
                     margin: 5px 20px;
+
+                    &:hover {
+                        cursor: pointer;
+                    }
                 }
             }
         }

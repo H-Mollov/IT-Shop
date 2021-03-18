@@ -6,9 +6,9 @@ import { ListComponent } from './list/list.component';
 import { DetailsComponent } from './details/details.component';
 import { OffersRoutingModule } from './offers-routing.module';
 import { LikedComponent } from './liked/liked.component';
-import { MyOffersComponent } from './my-offers/my-offers.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component'
 import { FormsModule } from '@angular/forms';
+import { MyoffersComponent } from './myoffers/myoffers.component';
 
 
 @NgModule({
@@ -18,8 +18,8 @@ import { FormsModule } from '@angular/forms';
     ListComponent,
     DetailsComponent,
     LikedComponent,
-    MyOffersComponent,
-    ShoppingCartComponent
+    ShoppingCartComponent,
+    MyoffersComponent
   ],
   imports: [
     CommonModule,

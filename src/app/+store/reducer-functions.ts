@@ -1,6 +1,5 @@
-import { state } from '@angular/animations';
 import { createReducer, on } from '@ngrx/store';
-import { login, authenticate, offers, promotion, bestSellers, focusedOffer } from './actions';
+import { login, authenticate, offers, promotion, bestSellers, focusedOffer, myOffers } from './actions';
 
 export const initialState = {
     currentUser: undefined,
@@ -20,7 +19,10 @@ export const offersReducer = createReducer(
     }),
     on(focusedOffer, (state, data) => {
         return { ...state, focusedOffer: data }
-    })
+    }),
+    on(myOffers, (state, data) => {
+        return { ...state, myOffers: data }
+    }),
 );
 
 export const promotionsReducer = createReducer(

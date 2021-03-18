@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment as env } from '../../environments/environment'
 import { Store } from '@ngrx/store';
-import { offers, promotion, bestSellers } from '../+store/actions'
+import { offers, promotion, bestSellers, myOffers } from '../+store/actions'
 import { catchError, tap } from 'rxjs/operators';
 
 @Injectable({
@@ -30,7 +30,7 @@ export class OffersService {
     return this.http.post(`${env.apiURL}${env.endPoints.createOffer}`, offerData, { headers: this.offerHeaders });
   }
 
-  filterOffersByCategory(category) {
+  filterOffersByCategory(category: string) {
     return this.http.get(`${env.apiURL}${env.endPoints.createOffer}/`, {
       headers: this.offerHeaders,
       params: new HttpParams()
@@ -38,6 +38,19 @@ export class OffersService {
     }).pipe(
       tap((data: any) => {
         this.store.dispatch(offers(data))
+      }),
+      catchError((err) => { throw new Error(err) })
+    )
+  }
+
+  filterOffersByOwner(owner: string) {
+    return this.http.get(`${env.apiURL}${env.endPoints.createOffer}/`, {
+      headers: this.offerHeaders,
+      params: new HttpParams()
+        .set('where', `{"owner":"${owner}"}`)
+    }).pipe(
+      tap((data: any) => {
+        this.store.dispatch(myOffers(data))
       }),
       catchError((err) => { throw new Error(err) })
     )
@@ -81,6 +94,12 @@ export class OffersService {
   showFilteredList(category: string) {
     this.filterOffersByCategory(category).subscribe(() => {
       this.router.navigateByUrl(`offers/${category}`)
+    })
+  }
+
+  showMyOffers(owner: string) {
+    this.filterOffersByOwner(owner).subscribe(() => {
+      this.router.navigateByUrl(`/myOffers`);
     })
   }
 }

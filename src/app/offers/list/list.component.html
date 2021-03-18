@@ -1,36 +1,22 @@
 <div class="main-container">
-    <aside>
-        <label for="priceRange">Price Range:</label>
-        <input type="range" name="priceRange" id="priceRange">
-
-        <label for="manufacturer">Manufacturer:</label>
-        <select name="manufacturer" id="manufacturer">
-            <option>AMD</option>
-            <option>nVidia</option>
-            <option>Razer</option>
-            <option>JBL</option>
-            <option>Panzer</option>
-        </select>
-    </aside>
     <section class="products">
         <header>
             <span>Sort by:</span>
             <ul>
                 <li>Name</li>
                 <li>Price</li>
-                <li>Manufacturer</li>
             </ul>
         </header>
         <div class="product-list">
             <div class="product-wrapper" *ngFor="let offer of currentOffers">
-                <div class="image-wrapper" routerLink='/offers/details/{{offer.objectId}}'>
+                <div class="image-wrapper" >
                     <img src="{{offer.imageUrl}}" alt="image.png" >
                 </div>
-                <article routerLink='/offers/details/{{offer.objectId}}'>
+                <article>
                     <h4>{{offer.name}}</h4>
                     <p>{{offer.price}}$</p>
                 </article>
-                <button type="button">Add to Cart</button>
+                <button type="button" routerLink='/offers/details/{{offer.objectId}}'>Details</button>
             </div>
         </div>
     </section>

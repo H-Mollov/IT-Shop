@@ -1,7 +1,8 @@
 import { RouterModule, Routes } from '@angular/router'
 import { CreateComponent } from './create/create.component';
 import { DetailsComponent } from './details/details.component';
-import { ListComponent } from './list/list.component'
+import { ListComponent } from './list/list.component';
+import { MyoffersComponent } from './myoffers/myoffers.component';
 
 const routes: Routes = [
     {
@@ -23,6 +24,10 @@ const routes: Routes = [
     {
         path: 'offers/edit/:id',
         component: CreateComponent
+    },
+    {
+        path: 'myOffers',
+        component: MyoffersComponent
     }
 ]
 
