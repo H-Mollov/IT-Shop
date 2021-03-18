@@ -1,7 +1,7 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { login } from 'src/app/+store/actions';
+import { login, likedOffers, boughtOffers } from 'src/app/+store/actions';
 import { OffersService } from 'src/app/offers/offers.service';
 import { UserService } from '../../user/user.service';
 
@@ -10,7 +10,7 @@ import { UserService } from '../../user/user.service';
   templateUrl: './user-panel.component.html',
   styleUrls: ['./user-panel.component.scss']
 })
-export class UserPanelComponent implements OnInit, OnDestroy {
+export class UserPanelComponent {
 
   constructor(
     private user: UserService,
@@ -22,22 +22,38 @@ export class UserPanelComponent implements OnInit, OnDestroy {
   isLogged;
   offers$ = this.offers;
 
-  Subscriptions = [];
   currentUser = this.store.select(login).subscribe((data) => {
-    this.isLogged = data.login.Session? data.login.Session : data.login.CurrentUser;
-  })
+    this.isLogged = data.login.Session ? data.login.Session : data.login.CurrentUser;
+  });
+  currentUserLikedOffers;
+  currentUserBoughtOffers;
 
   logoutUserHandler() {
     this.user.logoutUser().subscribe(() => {
       this.router.navigateByUrl('/user/login');
       window.location.reload();
-    })
-  }
-  
-  ngOnInit(): void {
+    });
   }
 
-  ngOnDestroy(): void {
-    this.Subscriptions.forEach(sub => sub.unsubscribe());
+  likedOffersHandler() {
+    this.store.subscribe((data) => {
+      this.currentUserLikedOffers = data.login.CurrentUser.likedOffers;
+    });
+
+    this.offers.getOffersByIdArray(this.currentUserLikedOffers).subscribe((data: any) => {
+      this.store.dispatch(likedOffers(data.results));
+      this.router.navigateByUrl('/likedOffers');
+    });
+  }
+
+  boughtOffersHandler() {
+    this.store.subscribe((data) => {
+      this.currentUserBoughtOffers = data.login.CurrentUser.boughtOffers;
+    });
+
+    this.offers.getOffersByIdArray(this.currentUserBoughtOffers).subscribe((data: any) => {
+      this.store.dispatch(boughtOffers(data.results));
+      this.router.navigateByUrl('/boughtOffers');
+    });
   }
 }

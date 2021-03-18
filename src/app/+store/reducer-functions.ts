@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { login, authenticate, offers, promotion, bestSellers, focusedOffer, myOffers } from './actions';
+import { login, authenticate, offers, promotion, bestSellers, focusedOffer, myOffers, likedOffers, boughtOffers } from './actions';
 
 export const initialState = {
     currentUser: undefined,
@@ -25,6 +25,12 @@ export const offersReducer = createReducer(
     }),
     on(myOffers, (state, data) => {
         return { ...state, myOffers: data }
+    }),
+    on(likedOffers, (state, data) => {
+        return { ...state, likedOffers: data }
+    }),
+    on(boughtOffers, (state, data) => {
+        return { ...state, boughtOffers: data }
     }),
 );
 

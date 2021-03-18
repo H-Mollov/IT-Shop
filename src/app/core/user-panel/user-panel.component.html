@@ -1,8 +1,8 @@
 <div class="user-panel">
     <div class="options-wrapper">
         <ul *ngIf="isLogged">
-            <li><i class="fas fa-shopping-cart"></i></li>
-            <li><i class="far fa-thumbs-up" routerLink='/offers/liked'></i></li>
+            <li><i class="fas fa-shopping-cart" (click)="boughtOffersHandler()"></i></li>
+            <li><i class="far fa-thumbs-up" (click)="likedOffersHandler()"></i></li>
             <li><i class="fas fa-user-tag" (click)="offers$.showMyOffers(isLogged.userId)" routerLink="/offers/myOffers"></i></li>
             <li><i class="fas fa-door-open" (click)='logoutUserHandler()'></i></li>
         </ul>

@@ -1,8 +1,10 @@
 import { RouterModule, Routes } from '@angular/router'
 import { CreateComponent } from './create/create.component';
 import { DetailsComponent } from './details/details.component';
+import { LikedComponent } from './liked/liked.component';
 import { ListComponent } from './list/list.component';
 import { MyoffersComponent } from './myoffers/myoffers.component';
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 
 const routes: Routes = [
     {
@@ -28,6 +30,14 @@ const routes: Routes = [
     {
         path: 'myOffers',
         component: MyoffersComponent
+    },
+    {
+        path: 'likedOffers',
+        component: LikedComponent
+    },
+    {
+        path: 'boughtOffers',
+        component: ShoppingCartComponent
     }
 ]
 

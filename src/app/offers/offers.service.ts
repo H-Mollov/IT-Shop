@@ -56,6 +56,32 @@ export class OffersService {
     )
   }
 
+  generateOffersUrlEncodedString(idArray) {
+
+    if (idArray.length === 0 || !idArray) {
+      return '{"objectId":"0000000000"}';
+    }
+
+    let urlString = '{"$or":[';
+    idArray.forEach((id) => {
+      urlString += `{"objectId":"${id}"},`;
+    })
+    urlString = urlString.substring(0, urlString.length - 1);
+    urlString += ']}'
+    
+    return urlString;
+  }
+
+  getOffersByIdArray(idArray) {
+    const propertyString = this.generateOffersUrlEncodedString(idArray);
+
+    return this.http.get(`${env.apiURL}${env.endPoints.createOffer}/`, {
+      headers: this.offerHeaders,
+      params: new HttpParams()
+        .set('where', propertyString)
+    })
+  }
+
   getPromoOffers() {
     return this.http.get(`${env.apiURL}${env.endPoints.createOffer}/`, {
       headers: this.offerHeaders,
