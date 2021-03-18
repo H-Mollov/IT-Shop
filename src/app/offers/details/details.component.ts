@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { offers, login, focusedOffer } from '../../+store/actions';
+import { offers, login, focusedOffer,  } from '../../+store/actions';
 import { OffersService } from '../offers.service';
 
 @Component({
@@ -24,8 +24,11 @@ export class DetailsComponent implements OnDestroy, OnInit {
   isLiked: boolean = false;
 
   findElement = this.store.select(offers).subscribe((data) => {
-    this.currentElement = data.offers.currentOffers.results.find(element => element.objectId === this.id);
+    this.currentElement = 
+    data.offers.currentOffers.results.find(element => element.objectId === this.id) ||
+    data.offers.myOffers.results.find(element => element.objectId === this.id);
     console.log(this.currentElement);
+    console.log(data);
   });
 
   getOwner = this.store.select(login).subscribe((data) => {
