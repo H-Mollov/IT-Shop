@@ -41,7 +41,7 @@ export class UserPanelComponent {
     });
 
     this.offers.getOffersByIdArray(this.currentUserLikedOffers).subscribe((data: any) => {
-      this.store.dispatch(likedOffers(data.results));
+      this.store.dispatch(likedOffers(data));
       this.router.navigateByUrl('/likedOffers');
     });
   }
@@ -52,7 +52,7 @@ export class UserPanelComponent {
     });
 
     this.offers.getOffersByIdArray(this.currentUserBoughtOffers).subscribe((data: any) => {
-      this.store.dispatch(boughtOffers(data.results));
+      this.store.dispatch(boughtOffers(data));
       this.router.navigateByUrl('/boughtOffers');
     });
   }

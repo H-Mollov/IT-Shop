@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-liked',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LikedComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private store: Store
+  ) { }
+
+  likedOffers;
 
   ngOnInit(): void {
+    this.store.subscribe((data: any) => {
+      this.likedOffers = data.offers.likedOffers.results;
+    })
   }
 
 }

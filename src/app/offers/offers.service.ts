@@ -68,7 +68,6 @@ export class OffersService {
     })
     urlString = urlString.substring(0, urlString.length - 1);
     urlString += ']}'
-    
     return urlString;
   }
 

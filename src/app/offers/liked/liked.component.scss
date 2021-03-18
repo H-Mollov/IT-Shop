@@ -1,0 +1,78 @@
+.liked-offers {
+    h2 {
+        font-size: 30px;
+        text-transform: uppercase;
+        text-align: center;
+    }
+
+    ul {
+        list-style: none;
+
+        li {
+            display: flex;
+            align-items: center;
+            border-top: 1px solid black;
+            border-bottom: 1px solid black;
+            margin: 10px 0;
+            padding: 20px;
+            height: 250px;
+
+            .image-wrapper {
+                height: 100%;
+                margin-right: 20px;
+
+                img {
+                    height: 100%;
+                    width: 450px;
+                }
+            }
+
+            .info-wrapper {
+                display: flex;
+                flex-wrap: wrap;
+                height: 100%;
+                align-content: space-around;
+                flex-basis: 75%;
+                margin-right: 20px;
+
+                article {
+                    flex-basis: 100%;
+                    max-height: 100%;
+
+                    h4 {
+                        font-size: 20px;
+                        margin-bottom: 20px;
+                    }
+
+                    p {
+                        font-size: 20px;
+                        overflow: auto;
+                        max-height: 150px;
+                    }
+                }
+
+                .bought,
+                .liked {
+                    margin-right: 50px;
+                    font-size: 20px;
+                }
+
+                .bought {
+                    color: red;
+                }
+
+                .liked {
+                    color: green;
+                }
+            }
+
+            .price {
+                font-size: 50px;
+            }
+        }
+
+        .no-offers-wrapper {
+            justify-content: center;
+        }
+    }
+}

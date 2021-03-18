@@ -1,1 +1,26 @@
-<p>liked works!</p>
+<section class="liked-offers" *ngIf="likedOffers">
+    <h2>Items you Liked</h2>
+    <ul>
+        <li *ngFor="let offer of likedOffers" routerLink='/offers/details/{{offer.objectId}}'>
+            <div class="image-wrapper">
+                <img src="{{offer.imageUrl}}" alt="offer-photo.png">
+            </div>
+            <div class="info-wrapper">
+                <article>
+                    <h4>{{offer.name}}</h4>
+                    <p>{{offer.description}}</p>
+                </article>
+                <span class="bought">
+                    Bought {{offer.bought}} times!
+                </span>
+                <span class="liked">
+                    Liked by {{offer.likes.length}} people!
+                </span>
+            </div>
+            <span class="price">{{offer.price}}$</span>
+        </li>
+        <li *ngIf="likedOffers.length === 0" class="no-offers-wrapper">
+            <p>It seems you havent liked any of our products. :(</p>
+        </li>
+    </ul>
+</section>

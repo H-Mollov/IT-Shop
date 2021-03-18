@@ -1,1 +1,26 @@
-<p>shopping-cart works!</p>
+<section class="bought-offers" *ngIf="boughtOffers">
+    <h2>Bought Items</h2>
+    <ul>
+        <li *ngFor="let offer of boughtOffers" routerLink='/offers/details/{{offer.objectId}}'>
+            <div class="image-wrapper">
+                <img src="{{offer.imageUrl}}" alt="offer-photo.png">
+            </div>
+            <div class="info-wrapper">
+                <article>
+                    <h4>{{offer.name}}</h4>
+                    <p>{{offer.description}}</p>
+                </article>
+                <span class="bought">
+                    Bought {{offer.bought}} times!
+                </span>
+                <span class="liked">
+                    Liked by {{offer.likes.length}} people!
+                </span>
+            </div>
+            <span class="price">{{offer.price}}$</span>
+        </li>
+        <li *ngIf="boughtOffers.length === 0" class="no-offers-wrapper">
+            <p>Hmm ... It seems you havent bought anything, yet.</p>
+        </li>
+    </ul>
+</section>
