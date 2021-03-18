@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { UserService } from 'src/app/user/user.service';
 import { offers, login, focusedOffer, } from '../../+store/actions';
 import { OffersService } from '../offers.service';
 
@@ -15,12 +16,14 @@ export class DetailsComponent implements OnDestroy, OnInit {
     private activatdRoute: ActivatedRoute,
     private store: Store,
     private offerService: OffersService,
-    private router: Router
+    private router: Router,
+    private user: UserService
   ) { }
 
   id = this.activatdRoute.snapshot.params.id;
   currentElement;
   currentUser: string;
+  currentUserObj;
   isLiked: boolean = false;
   likesCounter: number;
   buyCounter: number;
@@ -29,13 +32,14 @@ export class DetailsComponent implements OnDestroy, OnInit {
     this.currentElement =
       data.offers.currentOffers.results.find(element => element.objectId === this.id) ||
       data.offers.myOffers.results.find(element => element.objectId === this.id);
-      this.likesCounter = this.currentElement.likes.length;
-      this.buyCounter = this.currentElement.bought;
+    this.likesCounter = this.currentElement.likes.length;
+    this.buyCounter = this.currentElement.bought;
     console.log(this.currentElement);
   });
 
   getOwner = this.store.select(login).subscribe((data) => {
-    this.currentUser = data.login.currentUser.userId;
+    this.currentUserObj = data.login.CurrentUser;
+    this.currentUser = data.login.Session.userId;
     if (this.currentUser !== this.currentElement.owner) {
       if (this.currentElement.likes.includes(this.currentUser)) {
         this.isLiked = true;
@@ -54,6 +58,12 @@ export class DetailsComponent implements OnDestroy, OnInit {
     this.likesCounter++;
 
     this.offerService.updateOffer(this.id, { likes: likesArr }).subscribe();
+    if (this.currentUserObj) {
+      const likedOffers = Array.from(this.currentUserObj.likedOffers);
+      likedOffers.push(this.currentElement.objectId);
+
+      this.user.updateUser({ likedOffers: likedOffers }, this.currentUserObj.objectId).subscribe();
+    }
   }
 
   buyOffer(): void {

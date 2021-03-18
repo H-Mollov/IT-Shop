@@ -4,7 +4,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 
 import { environment as env } from '../../environments/environment'
 import { Store } from '@ngrx/store';
-import { login } from '../+store/actions'
+import { login } from '../+store/actions';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -43,7 +43,9 @@ export class UserService {
 
   checkCurrentSession(currentSessionId = localStorage.getItem('sessionToken')) {
     let currentUser;
-    this.store.select(login).subscribe(data => currentUser = data.login.currentUser);
+    this.store.select(login).subscribe((data) => {
+      currentUser = data.login.Session
+    });
 
     if (currentUser) {
       return new Observable;
@@ -79,8 +81,19 @@ export class UserService {
     }
   }
 
-  updateUser(userData, currentSessionId = localStorage.getItem('sessionToken')) {
-    return this.http.put(`${env.apiURL}${env.endPoints.user}`, userData, {
+  getCurrentUser(currentSessionId: string = localStorage.getItem('sessionToken')) {
+    return this.http.get(`${env.apiURL}${env.endPoints.user}/me`, {
+      headers: new HttpHeaders({
+        'X-Parse-Application-Id': env.applicationID,
+        'X-Parse-REST-API-Key': env.restAPIkey,
+        'X-Parse-Session-Token': currentSessionId,
+        'Content-Type': 'application/json'
+      })
+    })
+  }
+
+  updateUser(userData, userId, currentSessionId = localStorage.getItem('sessionToken')) {
+    return this.http.put(`${env.apiURL}${env.endPoints.user}/${userId}`, userData, {
       headers: new HttpHeaders({
         'X-Parse-Application-Id': env.applicationID,
         'X-Parse-REST-API-Key': env.restAPIkey,
@@ -93,7 +106,7 @@ export class UserService {
   logoutUser() {
     const currentSessionId = localStorage.getItem('sessionToken');
     localStorage.removeItem('sessionToken');
-    
+
     return this.http.post(`${env.apiURL}${env.endPoints.logout}`, {}, {
       headers: new HttpHeaders({
         'X-Parse-Application-Id': env.applicationID,

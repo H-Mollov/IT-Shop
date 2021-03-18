@@ -24,7 +24,7 @@ export class UserPanelComponent implements OnInit, OnDestroy {
 
   Subscriptions = [];
   currentUser = this.store.select(login).subscribe((data) => {
-    this.isLogged = data.login.currentUser;
+    this.isLogged = data.login.Session? data.login.Session : data.login.CurrentUser;
   })
 
   logoutUserHandler() {

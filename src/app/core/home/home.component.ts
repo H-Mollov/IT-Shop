@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { UserService } from 'src/app/user/user.service';
 import { OffersService } from '../../offers/offers.service';
-import { promotion } from '../../+store/actions'
+import { authenticate } from '../../+store/actions'
 
 @Component({
   selector: 'app-home',
@@ -27,6 +27,9 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.offers.getPromoOffers().subscribe((data) => {
       this.promoOffers = data.results;
       this.displayedPromoOffer = data.results[0];
+    });
+    this.user.getCurrentUser().subscribe((data) => {
+      this.store.dispatch(authenticate(data));
     });
     this.offers.getBestSellerOffers().subscribe((data) => {
       this.bestSellers = data.results;
