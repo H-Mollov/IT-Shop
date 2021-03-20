@@ -25,6 +25,11 @@ export class OffersService {
 
   filteredOffers;
   editOfferData;
+  sortCriteria = {
+    date: "",
+    price: "",
+    name: ""
+  };
 
   createOffer(offerData) {
     return this.http.post(`${env.apiURL}${env.endPoints.createOffer}`, offerData, { headers: this.offerHeaders });
@@ -117,6 +122,9 @@ export class OffersService {
   }
 
   showFilteredList(category: string) {
+    this.sortCriteria.name = "";
+    this.sortCriteria.date = "";
+    this.sortCriteria.price = "";
     this.filterOffersByCategory(category).subscribe(() => {
       this.router.navigateByUrl(`offers/${category}`)
     })

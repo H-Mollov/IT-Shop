@@ -1,12 +1,22 @@
 <div class="main-container">
+    <aside>
+        <p>Sort by:</p>
+        <ul>
+            <li (click)="filterOffersByPrice()">
+                <span>Price</span>
+                <i class="{{sortCriteria.price}}"></i>
+            </li>
+            <li (click)="filterOffersByName()">
+                <span>Name</span>
+                <i class="{{sortCriteria.name}}"></i>
+            </li>
+            <li (click)="filterOffersByDate()">
+                <span>Date</span>
+                <i class="{{sortCriteria.date}}"></i>
+            </li>
+        </ul>
+    </aside>
     <section class="products">
-        <header>
-            <span>Sort by:</span>
-            <ul>
-                <li>Name</li>
-                <li>Price</li>
-            </ul>
-        </header>
         <div class="product-list">
             <div class="product-wrapper" *ngFor="let offer of currentOffers">
                 <div class="image-wrapper" >
