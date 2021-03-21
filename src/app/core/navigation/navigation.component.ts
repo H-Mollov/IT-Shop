@@ -16,7 +16,7 @@ export class NavigationComponent {
 
   isLogged;
   currentUser = this.store.subscribe((data) => {
-    this.isLogged = data.login.currentUser;
+    this.isLogged = data.login.CurrentUser;
   })
 
   offerService = this.offer;

@@ -6,7 +6,8 @@
         </div>
         <div class="description-wrapper">
             <label for="description">Description:</label>
-            <textarea name="description" id="description" cols="30" rows="10" #description="ngModel" ngModel="{{currentElement.description}}"></textarea>
+            <textarea name="description" id="description" cols="30" rows="10" #description="ngModel"
+                ngModel="{{currentElement.description}}"></textarea>
         </div>
         <div class="category-wrapper">
             <label for="category">Category:</label>
@@ -27,6 +28,6 @@
             <label for="price">Price:</label>
             <input #price="ngModel" type="number" name="price" id="price" ngModel="{{currentElement.price}}">
         </div>
-        <button>Create</button>
+        <button>{{id? "Update" : "Create"}}</button>
     </form>
 </div>
