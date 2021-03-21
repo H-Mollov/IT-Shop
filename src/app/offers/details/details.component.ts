@@ -30,13 +30,13 @@ export class DetailsComponent implements OnDestroy, OnInit {
 
   findElement = this.offerService.getOfferById(this.id).subscribe((data: any) => {
     this.currentElement = data.results[0];
+    this.store.dispatch(focusedOffer(this.currentElement));
     this.likesCounter = this.currentElement.likes.length;
     this.buyCounter = this.currentElement.bought;
     console.log(this.currentElement);
   })
 
   ngOnInit(): void {
-    this.store.dispatch(focusedOffer(this.currentElement));
     this.user.checkSession();
     const getOwner = this.user.getCurrentUser().subscribe((data: any) => {
       this.currentUserObj = data;

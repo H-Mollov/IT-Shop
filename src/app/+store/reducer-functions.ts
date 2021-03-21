@@ -32,18 +32,10 @@ export const offersReducer = createReducer(
     on(boughtOffers, (state, data) => {
         return { ...state, boughtOffers: data }
     }),
-);
-
-export const promotionsReducer = createReducer(
-    initialState,
     on(promotion, (state, data) => {
-        return { ...state, currentPromotions: data }
-    })
-)
-
-export const bestSellersReducer = createReducer(
-    initialState,
+        return { ...state, promotions: data }
+    }),
     on(bestSellers, (state, data) => {
-        return { ...state, currentPromotions: data }
+        return { ...state, bestSellers: data }
     })
-)
+);
