@@ -1,4 +1,4 @@
-<div class="details-wrapper">
+<div class="details-wrapper" *ngIf="currentElement">
     <div class="left-side">
         <img src="{{currentElement.imageUrl}}" alt="image.png">
         <div class="likeBtn-wrapper" *ngIf="currentElement.owner !== currentUser && !isLiked">

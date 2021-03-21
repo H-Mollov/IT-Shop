@@ -61,6 +61,14 @@ export class OffersService {
     )
   }
 
+  getOfferById(id: string) {
+    return this.http.get(`${env.apiURL}${env.endPoints.createOffer}/`, {
+      headers: this.offerHeaders,
+      params: new HttpParams()
+        .set('where', `{"objectId":"${id}"}`)
+    })
+  }
+
   generateOffersUrlEncodedString(idArray) {
 
     if (idArray.length === 0 || !idArray) {
