@@ -14,9 +14,12 @@ ul {
         font-size: 20px;
         text-align: center;
         color: #ffffff;
+        transition: all 0.5s ease-in-out;
 
         &:hover {
             cursor: pointer;
+            color: black;
+            text-shadow: 5px 5px 3px rgba(0,0,0,0.5);
         }
     }
 
@@ -24,5 +27,12 @@ ul {
         padding: 5px 10px;
         border-radius: 10px;
         background: #2161AB;
+
+        &:hover {
+            box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.75);
+            background: #1A4D88;
+            color: white;
+            text-shadow: none;
+        }
     }
 }

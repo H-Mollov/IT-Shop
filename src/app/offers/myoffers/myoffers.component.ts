@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { myOffers } from '../../+store/actions'
 
 @Component({
   selector: 'app-myoffers',
@@ -18,7 +17,7 @@ export class MyoffersComponent implements OnInit {
   myOffers;
 
   ngOnInit(): void {
-    this.store.select(myOffers).subscribe((data) => {
+    this.store.subscribe((data: any) => {
       this.myOffers = data.offers.myOffers.results;
     })
   }

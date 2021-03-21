@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { login, likedOffers, boughtOffers } from 'src/app/+store/actions';
+import { likedOffers, boughtOffers } from 'src/app/+store/actions';
 import { OffersService } from 'src/app/offers/offers.service';
 import { UserService } from '../../user/user.service';
 
@@ -22,7 +22,7 @@ export class UserPanelComponent {
   isLogged;
   offers$ = this.offers;
 
-  currentUser = this.store.select(login).subscribe((data) => {
+  currentUser = this.store.subscribe((data: any) => {
     this.isLogged = data.login.Session ? data.login.Session : data.login.CurrentUser;
   });
   currentUserLikedOffers;

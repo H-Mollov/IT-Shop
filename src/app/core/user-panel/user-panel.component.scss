@@ -45,5 +45,9 @@ div {
         font-size: 12px;
         border: none;
         height: max-content;
+
+        &:hover {
+            cursor: pointer;
+        }
     }
 }

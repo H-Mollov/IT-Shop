@@ -5,7 +5,7 @@
             <h3>{{displayedPromoOffer.name}}</h3>
             <span class="discount">-{{displayedPromoOffer.promotionPercentage}}%</span>
             <figure>
-                <img src="{{displayedPromoOffer.imageUrl}}" alt="focus.png">
+                <img src="{{displayedPromoOffer.imageUrl}}" alt="focus.png" routerLink="/offers/details/{{displayedPromoOffer.objectId}}">
                 <figcaption>
                     ONLY {{(displayedPromoOffer.price - ((displayedPromoOffer.price / 100) * displayedPromoOffer.promotionPercentage)).toFixed(2)}}$
                 </figcaption>
@@ -22,7 +22,7 @@
                 </div>
                 <div class="info-wrapper">
                     <article>
-                        <h4>{{offer.name}}</h4>
+                        <h4 routerLink="/offers/details/{{offer.objectId}}">{{offer.name}}</h4>
                         <p>{{offer.description}}</p>
                     </article>
                     <span class="bought">

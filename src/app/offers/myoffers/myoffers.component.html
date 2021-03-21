@@ -1,13 +1,13 @@
 <section class="my-offers" *ngIf="myOffers">
     <h2>My Offers</h2>
     <ul>
-        <li *ngFor="let offer of myOffers" routerLink='/offers/details/{{offer.objectId}}'>
+        <li *ngFor="let offer of myOffers">
             <div class="image-wrapper">
                 <img src="{{offer.imageUrl}}" alt="offer-photo.png">
             </div>
             <div class="info-wrapper">
                 <article>
-                    <h4>{{offer.name}}</h4>
+                    <h4 routerLink='/offers/details/{{offer.objectId}}'>{{offer.name}}</h4>
                     <p>{{offer.description}}</p>
                 </article>
                 <span class="bought">
