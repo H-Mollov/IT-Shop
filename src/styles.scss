@@ -38,4 +38,9 @@ body {
     main {
         height: max-content;
     }
+
+    router-outlet {
+        display: block;
+        height: 0px;
+    }
 }
