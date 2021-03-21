@@ -1,19 +1,28 @@
 div.form-wrapper {
     display: flex;
     justify-content: center;
+    margin: auto;
+    height: calc(100vh - 295px);
 
     form {
-        font-size: 18px;
+        font-size: 20px;
         padding: 20px;
-        border: 1px solid #2161AB;
+        border: 3px ridge #2161ab;
+        margin: auto;
+        width: 50%;
+        border-radius: 20px;
+        height: max-content;
 
         div {
-            margin: 10px 0;
+            margin: 20px 0;
+            font-size: 20px;
         }
 
         label {
             display: inline-block;
-            width: 100px;
+            width: 9%;
+            text-align: right;
+            margin-right: 10px;
         }
 
         .description-wrapper {
@@ -23,19 +32,35 @@ div.form-wrapper {
 
         input,
         textarea {
-            width: 300px;
+            width: 89%;
+            font-size: 22px;
+            border-radius: 5px;
+            padding: 5px;
+        }
+
+        input {
+            height: 35px;
         }
 
         button {
-            width: 100%;
+            width: 50%;
             color: white;
             padding: 5px;
             border: none;
-            background: #5494DE;
-        }
-    }
+            background: #5494de;
+            position: relative;
+            left: 25%;
+            font-size: 20px;
 
-    button {
-        width: 100%;
+            &:hover {
+                cursor: pointer;
+            }
+        }
+
+        select {
+            height: 35px;
+            border-radius: 5px;
+            font-size: 20px;
+        }
     }
 }
