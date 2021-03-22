@@ -1,50 +1,75 @@
-.form-wrapper {
-    height: 100%;
+.page-wrapper {
+    height: calc(100vh - 295px);
     display: flex;
+    flex-direction: column;
     justify-content: center;
 
-    form {
-        font-size: 18px;
-        padding: 20px;
-        border: 1px solid #2161AB;
+    .form-wrapper {
+        display: flex;
+        justify-content: center;
 
-        div {
-            margin: 10px 0;
-        }
+        form {
+            font-size: 20px;
+            padding: 20px;
+            border: 3px ridge #2161ab;
+            border-radius: 20px;
+            height: max-content;
 
-        label {
-            display: inline-block;
-            width: 100px;
-        }
+            div {
+                margin: 10px 0;
+            }
 
-        p {
-            margin: 5px 0;
-            text-align: center;
-            color: red;
-        }
+            label {
+                display: inline-block;
+                width: 100px;
+                margin-right: 10px;
+                text-align: end;
+            }
 
-        .error {
-            display: none;
-        }
+            p {
+                margin: 5px 0;
+                text-align: center;
+                color: red;
+            }
 
-        button {
-            width: 100%;
-            color: white;
-            padding: 5px;
-            border: none;
-            background: #5494DE;
+            .error {
+                display: none;
+            }
+
+            button {
+                width: 100%;
+                color: white;
+                padding: 5px;
+                border: none;
+                background: #5494de;
+                transition: all 0.5s ease-in-out;
+
+                &:hover {
+                    cursor: pointer;
+                    box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.75);
+                    background: #1a4d88;
+                    font-size: 20px;
+                    border-radius: 5px;
+                }
+            }
+
+            input {
+                font-size: 22px;
+                border-radius: 5px;
+                padding: 5px;
+            }
         }
     }
-}
 
-article {
-    width: 100%;
-    text-align: center;
-    margin: 30px 0;
-    padding: 10px 0;
-    border-top: 1px solid #0D294A;
-    border-bottom: 1px solid #0D294A;
-    background: #C4DAF3;
-    color: #0D294A;
-    font-style: italic;
+    article {
+        width: 100%;
+        text-align: center;
+        margin: 30px 0;
+        padding: 10px 0;
+        border-top: 1px solid #0d294a;
+        border-bottom: 1px solid #0d294a;
+        background: #c4daf3;
+        color: #0d294a;
+        font-style: italic;
+    }
 }
