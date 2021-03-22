@@ -1,4 +1,5 @@
 import { RouterModule, Routes } from '@angular/router'
+import { AuthenticateGuard } from '../core/guards/authenticate.guard';
 import { CreateComponent } from './create/create.component';
 import { DetailsComponent } from './details/details.component';
 import { LikedComponent } from './liked/liked.component';
@@ -13,7 +14,8 @@ const routes: Routes = [
     },
     {
         path: 'add',
-        component: CreateComponent
+        component: CreateComponent,
+        canActivate: [AuthenticateGuard]
     },
     {
         path: 'offers/:category',
@@ -29,15 +31,18 @@ const routes: Routes = [
     },
     {
         path: 'myOffers',
-        component: MyoffersComponent
+        component: MyoffersComponent,
+        canActivate: [AuthenticateGuard]
     },
     {
         path: 'likedOffers',
-        component: LikedComponent
+        component: LikedComponent,
+        canActivate: [AuthenticateGuard]
     },
     {
         path: 'boughtOffers',
-        component: ShoppingCartComponent
+        component: ShoppingCartComponent,
+        canActivate: [AuthenticateGuard]
     }
 ]
 

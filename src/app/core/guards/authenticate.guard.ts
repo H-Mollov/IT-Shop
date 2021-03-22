@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { UserService } from '../../user/user.service';
-import { environment as env } from '../../../environments/environment'
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +10,7 @@ export class AuthenticateGuard implements CanActivate {
 
   constructor(
     private router: Router,
-    private user: UserService
+    private user: UserService,
   ) { }
   canActivate(
     route: ActivatedRouteSnapshot,
@@ -20,11 +19,13 @@ export class AuthenticateGuard implements CanActivate {
     const sessionToken = localStorage.getItem('sessionToken');
 
     if (sessionToken) {
+      this.user.checkSession();
+      this.user.getCurrentUser().subscribe();
+
       return true;
     } else {
-      this.router.navigateByUrl('/login');
+      this.router.navigateByUrl('/home');
       return false;
     }
   }
-
 }

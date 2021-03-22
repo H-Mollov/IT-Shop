@@ -6,6 +6,7 @@ import { environment as env } from '../../environments/environment'
 import { Store } from '@ngrx/store';
 import { login } from '../+store/actions';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,8 @@ export class UserService {
 
   constructor(
     private http: HttpClient,
-    private store: Store<any>
+    private store: Store<any>,
+    private route: Router
   ) { }
 
   loginHeaders = new HttpHeaders({
@@ -43,7 +45,7 @@ export class UserService {
 
   checkCurrentSession(currentSessionId = localStorage.getItem('sessionToken')) {
     let currentUser;
-    this.store.select(login).subscribe((data) => {
+    this.store.subscribe((data: any) => {
       currentUser = data.login.Session
     });
 
@@ -69,13 +71,14 @@ export class UserService {
         const currentDate = new Date().getTime();
         const expirationDate = new Date(data.expiresAt.iso).getTime()
 
-        if (currentSessionId && expirationDate - currentDate > 0) {
+        if (expirationDate - currentDate > 0) {
           this.store.dispatch(login({
             userId: data.user.objectId,
             sessionToken: data.sessionToken,
           }))
         } else {
-          localStorage.removeItem('sessionToken')
+          localStorage.removeItem('sessionToken');
+          this.route.navigateByUrl('/home');
         }
       })
     }
