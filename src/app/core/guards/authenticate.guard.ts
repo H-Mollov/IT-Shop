@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { authenticate } from '../../+store/actions';
 import { Observable } from 'rxjs';
 import { UserService } from '../../user/user.service';
 
@@ -11,6 +13,7 @@ export class AuthenticateGuard implements CanActivate {
   constructor(
     private router: Router,
     private user: UserService,
+    private store: Store
   ) { }
   canActivate(
     route: ActivatedRouteSnapshot,
@@ -19,9 +22,11 @@ export class AuthenticateGuard implements CanActivate {
     const sessionToken = localStorage.getItem('sessionToken');
 
     if (sessionToken) {
+      this.user.getCurrentUser().subscribe((data: any) => {
+        this.store.dispatch(authenticate(data));
+      });
       this.user.checkSession();
-      this.user.getCurrentUser().subscribe();
-
+      
       return true;
     } else {
       this.router.navigateByUrl('/home');

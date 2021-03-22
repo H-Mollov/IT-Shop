@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { Store } from '@ngrx/store';
+import { take } from 'rxjs/operators';
+import { UserService } from 'src/app/user/user.service';
+import { OffersService } from '../offers.service';
 
 @Component({
   selector: 'app-myoffers',
@@ -10,16 +11,22 @@ import { Store } from '@ngrx/store';
 export class MyoffersComponent implements OnInit {
 
   constructor(
-    private router: Router,
-    private store: Store
+    private offers: OffersService,
+    private user: UserService
   ) { }
 
   myOffers;
 
   ngOnInit(): void {
-    this.store.subscribe((data: any) => {
-      this.myOffers = data.offers.myOffers.results;
-    })
+    this.user.getCurrentUser()
+      .pipe(take(1))
+      .subscribe((data: any) => {
+        this.offers.filterOffersByOwner(data.objectId)
+        .pipe(take(1))
+        .subscribe((data: any) => {
+          this.myOffers = data.results;
+        })
+      });
   }
 
 }

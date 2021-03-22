@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { take } from 'rxjs/operators';
+import { UserService } from 'src/app/user/user.service';
+import { OffersService } from '../offers.service';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -9,15 +11,25 @@ import { Store } from '@ngrx/store';
 export class ShoppingCartComponent implements OnInit {
 
   constructor(
-    private store: Store
+    private user: UserService,
+    private offers: OffersService
   ) { }
 
   boughtOffers;
 
   ngOnInit(): void {
-    this.store.subscribe((data: any) => {
-      this.boughtOffers = data.offers.boughtOffers.results;
-    })
+    this.user.getCurrentUser()
+      .pipe(take(1))
+      .subscribe((data: any) => {
+        if (data.boughtOffers) {
+          this.offers.getOffersByIdArray(data.boughtOffers)
+            .pipe(take(1))
+            .subscribe((data: any) => {
+              this.boughtOffers = data.results;
+            })
+        } else {
+          this.boughtOffers = [];
+        }
+      });
   }
-
 }
