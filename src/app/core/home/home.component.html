@@ -1,7 +1,7 @@
 <div class="main-content">
     <section class="promo">
         <i class="fas fa-arrow-left" (click)="previousOffer()"></i>
-        <div class="focus" *ngIf="displayedPromoOffer">
+        <div class="focus" *ngIf="displayedPromoOffer" #promoElement>
             <h3>{{displayedPromoOffer.name}}</h3>
             <span class="discount">-{{displayedPromoOffer.promotionPercentage}}%</span>
             <figure>

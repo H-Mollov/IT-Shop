@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { UserService } from 'src/app/user/user.service';
 import { OffersService } from '../../offers/offers.service';
@@ -17,6 +17,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     private store: Store
   ) { }
 
+  @ViewChild('promoElement') promoElementHTML;
   promoOffers: Array<any>;
   bestSellers: Array<any>;
   displayedPromoOffer;
@@ -34,7 +35,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.offers.getBestSellerOffers().subscribe((data) => {
       this.bestSellers = data.results;
     });
-    // this.switchCounterId = setInterval(() => { this.nextOffer(); }, 10000)
+    this.switchCounterId = setInterval(() => { this.nextOffer(); }, 7000)
   }
 
   ngOnDestroy(): void {
@@ -42,9 +43,15 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   nextOffer() {
-    const firstOffer = this.promoOffers.shift();
-    this.displayedPromoOffer = this.promoOffers[0];
-    this.promoOffers.push(firstOffer);
+    this.promoElementHTML.nativeElement.style.opacity = 0;
+
+    setTimeout(() => {
+      const firstOffer = this.promoOffers.shift();
+      this.displayedPromoOffer = this.promoOffers[0];
+      this.promoOffers.push(firstOffer);
+      this.promoElementHTML.nativeElement.style.opacity = 1;
+    }, 1000)
+
   }
 
   previousOffer() {
