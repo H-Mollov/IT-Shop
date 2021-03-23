@@ -2,7 +2,8 @@
     <div class="left-side">
         <img src="{{currentElement.imageUrl}}" alt="image.png">
         <div class="likeBtn-wrapper" *ngIf="currentElement.owner !== currentUser && !isLiked">
-            <button [disabled]="isLiked? true : false" (click)="likeOffer()">{{isLiked ? "You liked this item!" : "Like"}}</button>
+            <button *ngIf="!isLiked" (click)="likeOffer()">Like!</button>
+            <p *ngIf="isLiked">You liked the item!</p>
         </div>
         <div class="information-wrapper">
             <span>Bought {{buyCounter}} times!</span>
@@ -13,9 +14,9 @@
         <h2>{{currentElement.name}}</h2>
         <p>{{currentElement.description}}</p>
         <div class="price-wrapper">
-            <span *ngIf="!currentElement.promotion">{{currentElement.price}}$</span>
-            <span *ngIf="currentElement.promotion">{{(currentElement.price - ((currentElement.price / 100) *
-                currentElement.promotionPercentage)).toFixed(2)}}$</span>
+            <span *ngIf="currentElement.promotion" class="old-price">{{currentElement.price}}$</span>
+            <span [class]="currentElement.promotion? 'new-price' : ''">{{currentElement.promotion? (currentElement.price - ((currentElement.price / 100) *
+                currentElement.promotionPercentage)).toFixed(2) : currentElement.price}}$</span>
             <button *ngIf="currentElement.owner !== currentUser" (click)="buyOffer()">Buy!</button>
             <button *ngIf="currentElement.owner === currentUser" (click)="editOffer('/offers/edit/' + currentElement.objectId)">Edit Offer</button>
             <button *ngIf="currentElement.owner === currentUser" (click)="deleteOffer()">Delete Offer</button>

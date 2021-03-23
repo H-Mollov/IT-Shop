@@ -33,7 +33,6 @@ export class DetailsComponent implements OnDestroy, OnInit {
     this.store.dispatch(focusedOffer(this.currentElement));
     this.likesCounter = this.currentElement.likes.length;
     this.buyCounter = this.currentElement.bought;
-    console.log(this.currentElement);
   })
 
   ngOnInit(): void {

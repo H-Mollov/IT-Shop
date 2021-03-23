@@ -59,6 +59,17 @@
             span {
                 font-size: 50px;
                 margin-bottom: 10px;
+
+                &.old-price {
+                    text-decoration: line-through;
+                    color: #891515;
+                    font-size: 40px;
+                }
+
+                &.new-price {
+                    color: green;
+                    font-weight: 700;
+                }
             }
 
             button {
@@ -74,9 +85,13 @@
         border: none;
         color: white;
         margin-top: 5px;
+        transition: all 0.5s ease-in-out;
     }
 
     button:hover {
         cursor: pointer;
+        box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.75);
+        background: #1a4d88;
+        border-radius: 10px;
     }
 }
