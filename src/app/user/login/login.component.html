@@ -3,21 +3,21 @@
         <form #f="ngForm" (ngSubmit)="formHandler(f.value)">
             <div class="username-wrapper">
                 <label for="username">Username:</label>
-                <input ngModel type="text" name="username" id="username" #username="ngModel" required>
+                <input ngModel type="text" name="username" id="username" #username="ngModel" required [class]="username.touched && !!username.errors? 'input-error' : ''">
                 <p *ngIf="username.touched && !!username.errors">Username is required!</p>
             </div>
             <div class="password-wrapper">
                 <label for="username">Password:</label>
-                <input ngModel #password="ngModel" required type="password" name="password" id="password">
+                <input ngModel #password="ngModel" required type="password" name="password" id="password" [class]="password.touched && !!password.errors? 'input-error' : ''">
                 <p *ngIf="password.touched && !!password.errors">Password is required!</p>
             </div>
-            <p class="error">Some Error Message here</p>
             <button [disabled]="!!password.errors || !!username.errors">Login</button>
+            <p class="request-error" *ngIf="requestError">{{requestError}}</p>
         </form>
     </div>
     <article>
         <p>To save you some time and limit multiple user registration.</p>
-        <p>Please use the following sample credentials:</p>
+        <p>Please use the following sample credentials for full site functionality:</p>
         <p>Username: ShopIT</p>
         <p>Password: ShopITpassword</p>
     </article>

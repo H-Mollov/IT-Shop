@@ -37,15 +37,17 @@ export class DetailsComponent implements OnDestroy, OnInit {
 
   ngOnInit(): void {
     this.user.checkSession();
-    const getOwner = this.user.getCurrentUser().subscribe((data: any) => {
-      this.currentUserObj = data;
-      this.currentUser = data.objectId;
-      if (this.currentUser !== this.currentElement.owner) {
-        if (this.currentElement.likes.includes(this.currentUser)) {
-          this.isLiked = true;
+    if (localStorage.getItem('sessionToken')) {
+      const getOwner = this.user.getCurrentUser().subscribe((data: any) => {
+        this.currentUserObj = data;
+        this.currentUser = data.objectId;
+        if (this.currentUser !== this.currentElement.owner) {
+          if (this.currentElement.likes.includes(this.currentUser)) {
+            this.isLiked = true;
+          }
         }
-      }
-    });
+      });
+    }
   }
 
   likeOffer(): void {

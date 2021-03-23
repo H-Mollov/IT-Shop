@@ -14,18 +14,17 @@ export class LoginComponent {
     private user: UserService
   ) { }
 
+  requestError;
+
   formHandler(formValue: { username: string, password: string }) {
 
     this.user.login(formValue).subscribe(
-      {
-        next: (data: { sessionToken: string }) => {
-          this.router.navigateByUrl('/home');
-          localStorage.setItem('sessionToken', data.sessionToken);
-        },
-        error: (err) => {
-          console.log(err)
-        }
+      (data: { sessionToken: string }) => {
+        this.router.navigateByUrl('/home');
+        localStorage.setItem('sessionToken', data.sessionToken);
+      }),
+      (error) => {
+        console.log(error.error.error);
       }
-    )
   }
 }

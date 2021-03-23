@@ -89,16 +89,18 @@ export class ListComponent implements OnInit {
   ngOnInit(): void {
     this.user.checkSession();
 
-    this.user.getCurrentUser().subscribe((data: any) => {
-      const userData = {
-        username: data.username,
-        objectId: data.objectId,
-        likedOffers: data.likedOffers ? data.likedOffers : [],
-        boughtOffers: data.boughtOffers ? data.boughtOffers : []
-      };
-      this.store.dispatch(authenticate(userData));
-    });
-
+    if(localStorage.getItem('sessionToken')) {
+      this.user.getCurrentUser().subscribe((data: any) => {
+        const userData = {
+          username: data.username,
+          objectId: data.objectId,
+          likedOffers: data.likedOffers ? data.likedOffers : [],
+          boughtOffers: data.boughtOffers ? data.boughtOffers : []
+        };
+        this.store.dispatch(authenticate(userData));
+      });
+    }
+    
     this.store
     .subscribe((data: any) => {
       if (!data.offers.currentOffers) {

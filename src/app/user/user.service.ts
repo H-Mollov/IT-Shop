@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http'
 import { catchError, map, tap } from 'rxjs/operators';
-
 import { environment as env } from '../../environments/environment'
 import { Store } from '@ngrx/store';
 import { login } from '../+store/actions';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -39,7 +38,7 @@ export class UserService {
           sessionToken: data.sessionToken
         }));
       }),
-      catchError((err) => { throw new Error(err) })
+      catchError((err) => throwError(err))
     )
   }
 

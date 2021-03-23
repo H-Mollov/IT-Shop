@@ -29,9 +29,13 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.promoOffers = data.results;
       this.displayedPromoOffer = data.results[0];
     });
-    this.user.getCurrentUser().subscribe((data) => {
-      this.store.dispatch(authenticate(data));
-    });
+
+    if (localStorage.getItem('sessionToken')) {
+      this.user.getCurrentUser().subscribe((data) => {
+        this.store.dispatch(authenticate(data));
+      });
+    }
+    
     this.offers.getBestSellerOffers().subscribe((data) => {
       this.bestSellers = data.results;
     });
