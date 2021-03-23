@@ -13,9 +13,23 @@ div.form-wrapper {
         border-radius: 20px;
         height: max-content;
 
+        .form-information {
+            font-size: 14px;
+            text-align: center;
+        }
+
         div {
             margin: 20px 0;
             font-size: 20px;
+
+            .check-error {
+                color: red;
+                margin-top: 10px;
+                font-style: italic;
+                font-size: 16px;
+                position: relative;
+                left: 130px;
+            }
         }
 
         label {
@@ -27,15 +41,24 @@ div.form-wrapper {
 
         .description-wrapper {
             display: flex;
+            flex-wrap: wrap;
             align-items: center;
+
+            .check-error {
+                flex-basis: 100%;
+            }
         }
 
         input,
         textarea {
-            width: 89%;
+            width: 86%;
             font-size: 22px;
             border-radius: 5px;
             padding: 5px;
+
+            &.input-error {
+                border: 2px solid red;
+            }
         }
 
         input {
@@ -50,10 +73,15 @@ div.form-wrapper {
             background: #5494de;
             position: relative;
             left: 25%;
-            font-size: 20px;
+            font-size: 18px;
+            border-radius: 10px;
+            transition: all 0.5s ease-in-out;
 
             &:hover {
                 cursor: pointer;
+                box-shadow: 5px 5px 5px 0px rgba(0, 0, 0, 0.75);
+                background: #1a4d88;
+                font-size: 20px;
             }
         }
 
@@ -61,6 +89,10 @@ div.form-wrapper {
             height: 35px;
             border-radius: 5px;
             font-size: 20px;
+
+            &.input-error {
+                border: 2px solid red;
+            }
         }
     }
 }
