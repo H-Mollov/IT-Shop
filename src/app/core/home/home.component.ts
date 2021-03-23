@@ -50,13 +50,22 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.displayedPromoOffer = this.promoOffers[0];
       this.promoOffers.push(firstOffer);
       this.promoElementHTML.nativeElement.style.opacity = 1;
+      clearInterval(this.switchCounterId);
+      this.switchCounterId = setInterval(() => { this.nextOffer(); }, 7000)
     }, 1000)
 
   }
 
   previousOffer() {
-    const lastOffer = this.promoOffers.pop();
-    this.promoOffers.unshift(lastOffer);
-    this.displayedPromoOffer = this.promoOffers[0];
+    this.promoElementHTML.nativeElement.style.opacity = 0;
+
+    setTimeout(() => {
+      const lastOffer = this.promoOffers.pop();
+      this.promoOffers.unshift(lastOffer);
+      this.displayedPromoOffer = this.promoOffers[0];
+      this.promoElementHTML.nativeElement.style.opacity = 1;
+      clearInterval(this.switchCounterId);
+      this.switchCounterId = setInterval(() => { this.nextOffer(); }, 7000)
+    }, 1000)
   }
 }

@@ -19,17 +19,19 @@
     <section class="products">
         <div class="product-list">
             <div class="product-wrapper" *ngFor="let offer of currentOffers">
-                <div class="image-wrapper" >
-                    <img src="{{offer.imageUrl}}" alt="image.png" >
+                <div class="image-wrapper">
+                    <img src="{{offer.imageUrl}}" alt="image.png">
                 </div>
-                <article>
-                    <h4>{{offer.name}}</h4>
+                <h4>{{offer.name}}</h4>
+                <div class="price-button-wrapper">
                     <p>
-                        <span *ngIf="offer.promotion" class="old-value">{{offer.price}}$<i class="fas fa-angle-double-right"></i></span>
-                        <span [class]="offer.promotion? 'new-value' : ''">{{offer.promotion? (offer.price - ((offer.price /100) * offer.promotionPercentage)).toFixed(2) : offer.price.toFixed(2)}}$</span>
+                        <span *ngIf="offer.promotion" class="old-value">{{offer.price}}$<i
+                                class="fas fa-angle-double-right"></i></span>
+                        <span [class]="offer.promotion? 'new-value' : ''">{{offer.promotion? (offer.price - ((offer.price
+                            /100) * offer.promotionPercentage)).toFixed(2) : offer.price.toFixed(2)}}$</span>
                     </p>
-                </article>
-                <button type="button" routerLink='/offers/details/{{offer.objectId}}'>Details</button>
+                    <button type="button" routerLink='/offers/details/{{offer.objectId}}'>Details</button>
+                </div>
             </div>
         </div>
     </section>
