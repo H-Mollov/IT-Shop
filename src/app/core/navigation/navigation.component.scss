@@ -7,6 +7,14 @@ ul {
     list-style: none;
     background: #5495df;
 
+    @media (max-width: 750px) {
+        flex-direction: column;
+    }
+
+    @media (max-height: 1024px) {
+        padding: 0px;
+    }
+
     li {
         display: flex;
         justify-content: center;
@@ -15,6 +23,7 @@ ul {
         text-align: center;
         color: #ffffff;
         transition: all 0.5s ease-in-out;
+        margin: 0 5px;
 
         &:hover {
             cursor: pointer;
@@ -27,6 +36,7 @@ ul {
         padding: 5px 10px;
         border-radius: 10px;
         background: #2161AB;
+        margin: 5px;
 
         &:hover {
             box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.75);
