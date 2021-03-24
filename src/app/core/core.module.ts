@@ -5,6 +5,7 @@ import { UserPanelComponent } from './user-panel/user-panel.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { HomeComponent } from './home/home.component';
 import { RouterModule } from '@angular/router';
+import { LoaderComponent } from './loader/loader.component';
 
 
 
@@ -13,7 +14,8 @@ import { RouterModule } from '@angular/router';
     NavigationComponent,
     FooterComponent,
     UserPanelComponent,
-    HomeComponent
+    HomeComponent,
+    LoaderComponent
   ],
   imports: [
     CommonModule,

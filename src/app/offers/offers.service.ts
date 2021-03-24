@@ -6,6 +6,7 @@ import { Store } from '@ngrx/store';
 import { offers, promotion, bestSellers, myOffers } from '../+store/actions'
 import { catchError, tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { CoreService } from '../core/core.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,8 @@ export class OffersService {
   constructor(
     private http: HttpClient,
     private router: Router,
-    private store: Store<any>
+    private store: Store<any>,
+    private loader: CoreService
   ) { }
 
   offerHeaders = new HttpHeaders({
@@ -129,10 +131,12 @@ export class OffersService {
   }
 
   showFilteredList(category: string) {
+    this.loader.showLoader();
     this.sortCriteria.name = "";
     this.sortCriteria.date = "";
     this.sortCriteria.price = "";
     this.filterOffersByCategory(category).subscribe(() => {
+      this.loader.hideLoader();
       this.router.navigateByUrl(`offers/${category}`)
     })
   }

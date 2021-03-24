@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { OffersService } from 'src/app/offers/offers.service';
 import { UserService } from '../../user/user.service';
+import { CoreService } from '../core.service';
 
 @Component({
   selector: 'app-user-panel',
@@ -15,7 +16,8 @@ export class UserPanelComponent {
     private user: UserService,
     private store: Store<any>,
     private offers: OffersService,
-    private router: Router
+    private router: Router,
+    private loader: CoreService
   ) { }
 
   isLogged;
@@ -28,6 +30,7 @@ export class UserPanelComponent {
   currentUserBoughtOffers;
 
   logoutUserHandler() {
+    this.loader.showLoader();
     this.user.logoutUser().subscribe(() => {
       this.router.navigateByUrl('/user/login');
       window.location.reload();

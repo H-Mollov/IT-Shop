@@ -1,6 +1,7 @@
 .details-wrapper {
     display: flex;
     width: 100%;
+    height: calc(100vh - 305px);
     box-sizing: border-box;
     align-items: center;
 
@@ -12,12 +13,13 @@
         margin: 5px;
         align-items: center;
         flex-direction: column;
+        max-height: 100%;
 
         img {
             width: 80%;
             border-radius: 20px;
             object-fit: contain;
-            height: max-content;
+            max-height: calc(100vh - 500px);
         }
 
         .likeBtn-wrapper {

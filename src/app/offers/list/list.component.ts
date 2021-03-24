@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { authenticate } from 'src/app/+store/actions';
+import { CoreService } from 'src/app/core/core.service';
 import { UserService } from 'src/app/user/user.service';
 import { OffersService } from '../offers.service';
 
@@ -16,7 +17,8 @@ export class ListComponent implements OnInit {
     private offers: OffersService,
     private store: Store,
     private user: UserService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private loader: CoreService
   ) { }
 
   currentOffers;
@@ -87,6 +89,7 @@ export class ListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.loader.showLoader();
     this.user.checkSession();
 
     if(localStorage.getItem('sessionToken')) {
@@ -106,9 +109,11 @@ export class ListComponent implements OnInit {
       if (!data.offers.currentOffers) {
         this.offers.filterOffersByCategory(this.activatedRoute.snapshot.params.category).subscribe((data) => {
           this.currentOffers = data.results;
+          this.loader.hideLoader()
         });
       } else {
         this.currentOffers = data.offers.currentOffers.results;
+        this.loader.hideLoader()
       }
     })
   }

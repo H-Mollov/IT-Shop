@@ -8,6 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { FooterComponent } from './core/footer/footer.component';
+import { LoaderComponent } from './core/loader/loader.component';
 import { NavigationComponent } from './core/navigation/navigation.component';
 import { UserPanelComponent } from './core/user-panel/user-panel.component';
 import { OffersModule } from './offers/offers.module';
@@ -34,7 +35,8 @@ import { UserModule } from './user/user.module';
     AppComponent,
     NavigationComponent,
     UserPanelComponent,
-    FooterComponent
+    FooterComponent,
+    LoaderComponent
   ]
 })
 export class AppModule { }

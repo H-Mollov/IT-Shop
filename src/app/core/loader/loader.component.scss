@@ -1,0 +1,82 @@
+div.loader-wrapper {
+    width: 100% !important;
+    height: 100vh !important;
+    background: rgba(1, 1, 1, 0.8);
+    position: fixed !important;
+    z-index: 10000 !important;
+
+    .loader {
+        margin: 0 auto;
+        width: 120px;
+        height: 100px;
+        text-align: center;
+        font-size: 10px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -webkit-transform: translateY(-50%) translateX(-50%);
+
+        > div {
+            height: 100%;
+            width: 16px;
+            float: left;
+            margin-left: 2px;
+            border-radius: 10px;
+            -webkit-animation: delay 0.8s infinite ease-in-out;
+            animation: delay 0.8s infinite ease-in-out;
+        }
+
+        .bar1 {
+            background-color: #002B5C;
+        }
+        .bar2 {
+            background-color: #1D5596;
+            -webkit-animation-delay: -0.7s;
+            animation-delay: -0.7s;
+        }
+        .bar3 {
+            background-color: #236AB9;
+            -webkit-animation-delay: -0.6s;
+            animation-delay: -0.6s;
+        }
+        .bar4 {
+            background-color: #609CE1;
+            -webkit-animation-delay: -0.5s;
+            animation-delay: -0.5s;
+        }
+        .bar5 {
+            background-color: #94C6FF;
+            -webkit-animation-delay: -0.4s;
+            animation-delay: -0.4s;
+        }
+        .bar6 {
+            background-color: #C7E1FF;
+            -webkit-animation-delay: -0.3s;
+            animation-delay: -0.3s;
+        }
+    }
+
+    @-webkit-keyframes delay {
+        0%,
+        40%,
+        100% {
+            -webkit-transform: scaleY(0.05);
+        }
+        20% {
+            -webkit-transform: scaleY(1);
+        }
+    }
+
+    @keyframes delay {
+        0%,
+        40%,
+        100% {
+            transform: scaleY(0.05);
+            -webkit-transform: scaleY(0.05);
+        }
+        20% {
+            transform: scaleY(1);
+            -webkit-transform: scaleY(1);
+        }
+    }
+}

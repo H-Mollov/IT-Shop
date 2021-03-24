@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 import { UserService } from 'src/app/user/user.service';
 import { OffersService } from '../../offers/offers.service';
 import { authenticate } from '../../+store/actions'
+import { CoreService } from '../core.service';
 
 @Component({
   selector: 'app-home',
@@ -14,7 +15,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   constructor(
     private user: UserService,
     private offers: OffersService,
-    private store: Store
+    private store: Store,
+    private loader: CoreService
   ) { }
 
   @ViewChild('promoElement') promoElementHTML;
@@ -24,6 +26,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   switchCounterId;
 
   ngOnInit(): void {
+    this.loader.showLoader();
     this.user.checkSession();
     this.offers.getPromoOffers().subscribe((data) => {
       this.promoOffers = data.results;
@@ -38,6 +41,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     
     this.offers.getBestSellerOffers().subscribe((data) => {
       this.bestSellers = data.results;
+      this.loader.hideLoader();
     });
     this.switchCounterId = setInterval(() => { this.nextOffer(); }, 7000)
   }
