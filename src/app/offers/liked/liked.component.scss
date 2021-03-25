@@ -22,6 +22,21 @@
             padding: 20px;
             height: 250px;
 
+            @media (max-height: 950px) {
+                padding: 10px;
+                height: 200px;
+            }
+
+            @media (max-width: 900px) {
+                padding: 5px;
+                height: 175px;
+            }
+
+            @media (max-width: 420px) {
+                padding: 5px;
+                height: 125px;
+            }
+
             .image-wrapper {
                 height: 100%;
                 margin-right: 20px;
@@ -30,6 +45,22 @@
                     height: 100%;
                     width: 450px;
                     object-fit: contain;
+
+                    @media (max-height: 950px) {
+                        width: 350px;
+                    }
+
+                    @media (max-width: 1280px) {
+                        width: 300px;
+                    }
+
+                    @media (max-width: 900px) {
+                        width: 200px;
+                    }
+
+                    @media (max-width: 420px) {
+                        width: 150px;
+                    }
                 }
             }
 
@@ -60,12 +91,59 @@
                         overflow: auto;
                         max-height: 150px;
                     }
+
+                    @media (max-height: 950px), (max-width: 1000px) {
+                        max-height: 150px;
+                        overflow: hidden;
+
+                        h4 {
+                            font-size: 20px;
+                            margin-bottom: 15px;
+                        }
+
+                        p {
+                            font-size: 16px;
+                            max-height: 100px;
+                        }
+                    }
+
+                    @media (max-width: 900px) {
+                        h4 {
+                            font-size: 18px;
+                            margin-bottom: 10px;
+                        }
+
+                        p {
+                            font-size: 14px;
+                        }
+                    }
+
+                    @media (max-width: 740px) {
+                        h4 {
+                            font-size: 16px;
+                        }
+                    }
+
+                    @media (max-width: 500px) {
+                        p {
+                            display: none;
+                        }
+                    }
                 }
 
                 .bought,
                 .liked {
                     margin-right: 50px;
                     font-size: 20px;
+
+                    @media (max-height: 950px) {
+                        font-size: 16px;
+                    }
+
+                    @media (max-width: 740px) {
+                        font-size: 14px;
+                        margin-right: 10px;
+                    }
                 }
 
                 .bought {
@@ -79,6 +157,22 @@
 
             .price {
                 font-size: 50px;
+
+                @media (max-height: 950px) {
+                    font-size-adjust: 40px;
+                }
+
+                @media (max-width: 1280px) {
+                    font-size: 35px;
+                }
+
+                @media (max-width: 900px) {
+                    font-size: 24px;
+                }
+
+                @media (max-width: 600px) {
+                    display: none;
+                }
             }
         }
 

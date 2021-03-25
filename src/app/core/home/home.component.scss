@@ -159,6 +159,7 @@
                 img {
                     height: 100%;
                     width: 450px;
+                    object-fit: contain;
 
                     @media (max-height: 950px) {
                         width: 350px;
