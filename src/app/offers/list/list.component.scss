@@ -22,6 +22,11 @@
             top: 0px;
         }
 
+        @media (max-width: 750px) {
+            top: 50px;
+            z-index: -1;
+        }
+
         @media (max-width: 400px) {
             padding: 5px;
         }
