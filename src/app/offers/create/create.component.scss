@@ -1,15 +1,20 @@
 div.form-wrapper {
     display: flex;
     justify-content: center;
-    margin: auto;
+    margin: 20px;
     height: calc(100vh - 305px);
+
+    @media (max-height: 1024px) {
+        height: max-content;
+    }
 
     form {
         font-size: 20px;
         padding: 20px;
         border: 3px ridge #2161ab;
         margin: auto;
-        width: 50%;
+        width: 100%;
+        max-width: 1024px;
         border-radius: 20px;
         height: max-content;
 
@@ -24,18 +29,20 @@ div.form-wrapper {
 
             .check-error {
                 color: red;
-                margin-top: 10px;
+                margin-top: 5px;
                 font-style: italic;
                 font-size: 16px;
-                position: relative;
-                left: 130px;
+
+                @media (max-width: 420px) {
+                    font-size: 12px;
+                }
             }
         }
 
         label {
             display: inline-block;
-            width: 9%;
-            text-align: right;
+            width: 110px;
+            text-align: left;
             margin-right: 10px;
         }
 
@@ -51,10 +58,9 @@ div.form-wrapper {
 
         input,
         textarea {
-            width: 86%;
+            width: 99%;
             font-size: 22px;
             border-radius: 5px;
-            padding: 5px;
 
             &.input-error {
                 border: 2px solid red;
@@ -89,6 +95,7 @@ div.form-wrapper {
             height: 35px;
             border-radius: 5px;
             font-size: 20px;
+            width: 100%;
 
             &.input-error {
                 border: 2px solid red;
