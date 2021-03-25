@@ -1,6 +1,10 @@
 .bought-offers {
     height: calc(100vh - 305px);
 
+    @media (max-height: 1024px) {
+        height: calc(100vh - 215px);
+    }
+    
     h2 {
         font-size: 30px;
         text-transform: uppercase;
