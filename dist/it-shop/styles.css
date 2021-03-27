@@ -1,0 +1,80 @@
+@import url(https://use.fontawesome.com/releases/v5.13.0/css/all.css);
+@import url(https://fonts.googleapis.com/css2?family=Oxanium&display=swap);
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Oxanium", cursive, "Ebrima", "Calibri", "Arial";
+}
+body {
+  height: 100vh;
+}
+body header {
+  width: 100%;
+  height: -webkit-max-content;
+  height: max-content;
+  display: flex;
+  flex-direction: column;
+}
+@media (max-width: 750px) {
+  body header {
+    position: sticky;
+    top: 0;
+  }
+}
+body header .top {
+  display: flex;
+  justify-content: space-around;
+  height: 200px;
+}
+@media (max-height: 1024px) {
+  body header .top {
+    height: 120px;
+  }
+}
+@media (max-width: 750px) {
+  body header .top {
+    height: 50px;
+    background: #5495df;
+  }
+}
+body header .top img {
+  position: absolute;
+  height: 200px;
+  left: 0;
+  width: 100%;
+  z-index: -1;
+}
+@media (max-height: 1024px) {
+  body header .top img {
+    height: 120px;
+  }
+}
+@media (max-width: 750px) {
+  body header .top img {
+    display: none;
+  }
+}
+body header .top #site-logo {
+  display: none;
+}
+@media (max-width: 750px) {
+  body header .top #site-logo {
+    display: block;
+    width: 50px;
+    height: 50px;
+    z-index: 1;
+  }
+}
+body header .top app-user-panel {
+  width: 100%;
+}
+body main {
+  height: -webkit-max-content;
+  height: max-content;
+}
+body router-outlet {
+  display: block;
+  height: 0px;
+}
+
+/*# sourceMappingURL=styles.css.map*/
