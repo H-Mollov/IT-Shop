@@ -19,6 +19,7 @@ body header {
   body header {
     position: sticky;
     top: 0;
+    z-index: 1;
   }
 }
 body header .top {

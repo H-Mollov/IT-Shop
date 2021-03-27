@@ -19,6 +19,7 @@ body {
         @media (max-width: 750px) {
             position: sticky;
             top: 0;
+            z-index: 1;
         }
 
         .top {
